@@ -18,9 +18,18 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'lastname',
+        'firstname',
+        'middle_initial',
         'email',
         'password',
+        'is_admin',
+        'lrn',
+        'grade',
+        'section',
+        'adviser',
+        'type',
+        'profile_picture',
     ];
 
     /**
@@ -42,4 +51,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getNameAttribute()
+    {
+        return $this->lastname . ', ' . $this->firstname . ' ' . $this->middle_initial;
+    }
+
+    public function adminlte_image()
+    {
+        return '/img/user-avatar.png';
+    }
 }

@@ -66,7 +66,9 @@
 
       <div id="content">
         @yield('content')
+
       </div>
+      
     </main>
   </div>
 </div>

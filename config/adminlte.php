@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>'. env('APP_NAME', 'LMS') .'</b>',
-    'logo_img' => 'img/logo1.png',
+    'logo_img' => 'img/ashi-library-logo.png',
     'logo_img_class' => 'brand-image',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -109,7 +109,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'img/logo1.png',
+            'path' => 'img/ashi-library-logo.png',
             'alt' => 'LMS Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -152,7 +152,7 @@ return [
     'layout_boxed' => null,
     'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
-    'layout_fixed_footer' => null,
+    'layout_fixed_footer' => true,
     'layout_dark_mode' => null,
 
     /*
@@ -316,7 +316,7 @@ return [
         ['header' => 'MASTER RECORDS'],
         [
             'text' => 'Users/Borrowers',
-            'url'  => '#',
+            'url'  => '/admin/borrowers',
             'icon' => 'fas fa-fw fa-users',
         ],
         [

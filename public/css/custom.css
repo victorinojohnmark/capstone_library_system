@@ -1,6 +1,29 @@
+@import url('https://fonts.bunny.net/css?family=Lato');
+
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+* {
+    /* font-size: 0.9rem; */
+    /* line-height: 1.6; */
+    
+}
+
 .login-box, .register-box {
     width: 560px !important;
 }
+
+label {
+    font-weight: normal !important;
+}
+
+
 
 /* .user-image {
     box-shadow: none !important;

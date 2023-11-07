@@ -329,12 +329,8 @@ return [
             'icon'    => 'fas fa-fw fa-cog',
             'submenu' => [
                 [
-                    'text' => 'Grades',
-                    'url'  => '#',
-                ],
-                [
                     'text' => 'Sections',
-                    'url'  => '#',
+                    'url'  => '/admin/sections',
                 ],
                 [
                     'text' => 'Advisors',

@@ -12,7 +12,8 @@
         <div class="card">
             <div class="card-header">
                 <div class="float-right d-inline-flex">
-                    <button type="button" class="btn btn-primary"><i class="bi bi-person-plus m"></i> Add Borrower</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalBorrower"><i class="fas fa-fw fa-user-plus"></i> Add Borrower</button>
+                    @include('master.borrowers.borrowermodal')
                 </div>
             </div>
 
@@ -51,19 +52,25 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/custom.css">
+    
+    {{-- <link rel="stylesheet" href="/css/custom.css"> --}}
+    @vite(['public/css/custom.css'])
     <link rel="stylesheet" href="/vendor/datatables/datatables.min.css">
 @stop
 
 @push('css')
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
 @endpush
 
 @section('js')
     <script src="/vendor/datatables/datatables.min.js"></script>
+    <script src="/js/custom.js"></script>
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <script>
         $(document).ready(function () {
-            $('#borrowers-table').DataTable();
+            $('#borrowers-table').DataTable({
+                "order": [],
+            });
 
         });
     </script>

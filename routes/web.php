@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\BorrowerController;
+use App\Http\Controllers\SectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('admin')->group(function () {
     
     Route::get('/borrowers', [BorrowerController::class, 'index'])->name('borrower-index');
+
+    Route::get('/sections', [SectionController::class, 'index'])->name('section-index');
+    Route::post('/sections', [SectionController::class, 'store'])->name('section-store');
+    Route::post('/sections/{section}', [SectionController::class, 'update'])->name('section-update');
 });

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('is_admin')->default(false);
             $table->string('lrn', 50)->nullable();
-            $table->unsignedMediumInteger('grade_id')->nullable();
+            $table->string('grade', 20)->nullable();
             $table->unsignedMediumInteger('section_id')->nullable();
             $table->unsignedMediumInteger('adviser_id')->nullable();
             $table->string('type');

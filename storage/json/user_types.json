@@ -1,11 +1,11 @@
 [
     {
-        "type": "Student" 
+        "name": "Student" 
     },
     {
-        "type": "Faculty"
+        "name": "Faculty"
     },
     {
-        "type": "Staff"
+        "name": "Staff"
     }
 ]

@@ -9,6 +9,7 @@
 @section('content')
 <div class="row justify-content-center pl-1">
     <div class="col-md-12">
+        @include('layouts.message')
         <div class="card">
             <div class="card-header">
                 <div class="float-right d-inline-flex">
@@ -34,11 +35,14 @@
                         @forelse ($borrowers as $borrower)
                             <tr>
                                 <td><strong>{{ $loop->index + 1 }}</strong></td>
-                                <td><strong><a href="#">{{ $borrower->name }}</a></strong></td>
+                                <td>
+                                    <strong><a href="#" data-toggle="modal" data-target="#modalBorrower{{ $borrower->id }}">{{ $borrower->name }}</a></strong>
+                                    @include('master.borrowers.borrowermodal')
+                                </td>
                                 <td>{{ $borrower->lrn ?? '-' }}</td>
-                                <td>{{ $borrower->grade_id ?? '-' }}</td>
-                                <td>{{ $borrower->section_id ?? '-' }}</td>
-                                <td>{{ $borrower->adviser_id ?? '-' }}</td>
+                                <td>{{ $borrower->grade ?? '-' }}</td>
+                                <td>{{ $borrower->section_id ? $borrower->section->section_name : '-' }}</td>
+                                <td>{{ $borrower->adviser_id ? $borrower->adviser->name : '-' }}</td>
                                 <td>{{ $borrower->type }}</td>
                             </tr>
                         @empty

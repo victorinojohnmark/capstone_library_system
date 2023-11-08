@@ -28,6 +28,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('admin')->group(function () {
     
     Route::get('/borrowers', [BorrowerController::class, 'index'])->name('borrower-index');
+    Route::post('/borrowers', [BorrowerController::class, 'store'])->name('borrower-store');
+    Route::post('/borrowers/{borrower}', [BorrowerController::class, 'update'])->name('borrower-update');
 
     Route::get('/sections', [SectionController::class, 'index'])->name('section-index');
     Route::post('/sections', [SectionController::class, 'store'])->name('section-store');

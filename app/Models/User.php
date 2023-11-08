@@ -8,6 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Section;
+use App\Models\Adviser;
+
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -21,10 +25,10 @@ class User extends Authenticatable
         'is_admin',
         'lrn',
         'grade',
-        'section',
-        'adviser',
+        'section_id',
+        'adviser_id',
         'type',
-        'profile_picture',
+        'image_filename',
     ];
 
     protected $hidden = [
@@ -55,5 +59,20 @@ class User extends Authenticatable
     public function scopeAdmins($query)
     {
         return $query->where('is_admin', '=', true);
+    }
+
+    public function getProfileImageUrlAttribute()
+    {
+        return $this->image_filename ? '/storage/profile_picture/' . $this->image_filename : '/img/img-placeholder.jpg';
+    }
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
+
+    public function adviser()
+    {
+        return $this->belongsTo(Adviser::class);
     }
 }

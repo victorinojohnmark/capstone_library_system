@@ -334,7 +334,7 @@ return [
                 ],
                 [
                     'text' => 'Advisors',
-                    'url'  => '#',
+                    'url'  => '/admin/advisers',
                 ],
                 
             ],

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BorrowerController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\AdviserController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +39,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/advisers', [AdviserController::class, 'index'])->name('adviser-index');
     Route::post('/advisers', [AdviserController::class, 'store'])->name('adviser-store');
     Route::post('/advisers/{adviser}', [AdviserController::class, 'update'])->name('adviser-update');
+
+
+    Route::get('/books', [BookController::class, 'index'])->name('book-index');
+    Route::post('/books', [BookController::class, 'store'])->name('book-store');
+    Route::post('/books/{book}', [BookController::class, 'update'])->name('book-update');
 });

@@ -321,7 +321,7 @@ return [
         ],
         [
             'text' => 'Books',
-            'url'  => '#',
+            'url'  => '/admin/books',
             'icon' => 'fas fa-fw fa-book-open',
         ],
         [

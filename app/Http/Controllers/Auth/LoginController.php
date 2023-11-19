@@ -30,11 +30,6 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if (!$user->hasVerifiedEmail()) {
-            auth()->logout();
-            return back()->with('warning', 'You need to confirm your account. Please check your email.');
-        }
-
-        return redirect()->intended($this->redirectPath());
+        return redirect()->route('welcome')->with('success', 'Login successful! Welcome, ' . $user->name);
     }
 }

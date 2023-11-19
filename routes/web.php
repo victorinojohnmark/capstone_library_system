@@ -7,9 +7,10 @@ use App\Http\Controllers\BorrowerController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\AdviserController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookRequestController;
 
-# Frontend
 use App\Http\Controllers\Borrower\BorrowerFrontendController;
+
 
 
 
@@ -48,6 +49,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('borrower')->group(function () {
 
         Route::get('/home', [BorrowerFrontendController::class, 'home'])->name('borrower.home');
+
+        Route::get('/book-requests', [BookRequestController::class, 'index'])->name('borrower.book-requests');
+        Route::post('/book-requests', [BookRequestController::class, 'store'])->name('borrower.book-requests-store');
+        Route::post('/book-requests/{bookRequest}', [BookRequestController::class, 'update'])->name('borrower.book-requests-update');
     });
 
 });

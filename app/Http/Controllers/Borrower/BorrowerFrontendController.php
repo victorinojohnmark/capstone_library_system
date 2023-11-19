@@ -11,7 +11,7 @@ class BorrowerFrontendController extends Controller
 {
     public function home()
     {
-        return 'Borrower home';
+        return view('borrower.borrower-home', []);
     }
 
     

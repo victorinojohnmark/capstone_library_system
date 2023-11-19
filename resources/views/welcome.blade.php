@@ -2,10 +2,6 @@
 
 @section('title', env('APP_NAME', 'LMS') . ' | ' .  'Welcome')
 
-@section('content_header')
-    <h2 class="pl-1">Users/Borrowers</h2>
-@stop
-
 @section('content')
     <div class="container">
         <div class="row">

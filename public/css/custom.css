@@ -15,8 +15,20 @@ body {
     
 }
 
-.login-box, .register-box {
+.navbar-brand {
+    width: 50px;
+    padding: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.login-box {
     width: 560px !important;
+}
+
+.register-box  {
+    max-width: 900px !important;
+    width: 100% !important;
 }
 
 label {

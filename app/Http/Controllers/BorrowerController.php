@@ -103,4 +103,6 @@ class BorrowerController extends Controller
         session()->flash('success', $borrower->name . ' is updated successfully.');
         return redirect()->route('borrower-index');
     }
+
+    
 }

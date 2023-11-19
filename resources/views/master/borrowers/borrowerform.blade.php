@@ -53,7 +53,7 @@
         </div>
 
         <div class="form-group col-md-4">
-            <label for="type{{ $borrower->id ?? null }}">Section</label>
+            <label for="type{{ $borrower->id ?? null }}">Type</label>
             <select name="type" class="custom-select" id="type{{ $borrower->id ?? null }}">
                 <option selected disabled>Select here...</option>
                 @forelse ($types as $type)

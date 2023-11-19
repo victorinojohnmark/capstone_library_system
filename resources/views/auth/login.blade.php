@@ -22,6 +22,8 @@
 
 @section('auth_body')
     <form action="{{ $login_url }}" method="post">
+        @include('layouts.message')
+
         @csrf
 
         {{-- Email field --}}

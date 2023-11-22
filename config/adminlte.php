@@ -349,7 +349,7 @@ return [
                     'url'  => '/admin/book-requests',
                 ],
                 [
-                    'text' => 'Available Books',
+                    'text' => 'Borrow/Return',
                     'url'  => '#',
                 ],
                 [

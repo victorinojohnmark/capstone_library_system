@@ -8,6 +8,7 @@ use App\Http\Controllers\SectionController;
 use App\Http\Controllers\AdviserController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookRequestController;
+use App\Http\Controllers\BookTransactionController;
 
 use App\Http\Controllers\Borrower\BorrowerFrontendController;
 
@@ -47,6 +48,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/book-requests', [BookRequestController::class, 'allBookRequests'])->name('admin.book-requests');
         Route::post('/book-requests/{bookRequest}/approve', [BookRequestController::class, 'approveBookRequest'])->name('admin.book-requests-approve');
         Route::post('/book-requests/{bookRequest}/reject', [BookRequestController::class, 'rejectBookRequest'])->name('admin.book-requests-reject');
+
+        Route::get('/book-transactions', [BookTransactionController::class, 'index'])->name('admin.book-transactions');
     });
 
 

@@ -38,4 +38,18 @@ class Book extends Model
         }
 
     }
+
+    public function scopeWithApprovedRequests($query)
+    {
+        return $query->whereHas('bookRequests', function ($subquery) {
+            $subquery->whereNotNull('approved_at');
+        });
+    }
+
+    public function scopeWithoutApprovalRequests($query)
+    {
+        return $query->whereDoesntHave('bookRequests');
+    }
+
+    
 }

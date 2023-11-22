@@ -44,8 +44,8 @@
                                         </td>
                                         <td>{{ $bookRequest->book->author }}</td>
                                         <td>{{ $bookRequest->book->isbn }}</td>
-                                        <td>{{ $bookRequest->requested_at }}</td>
-                                        <td>{{ 'Status here' }}</td>
+                                        <td>{{  $bookRequest->requested_at }}</td>
+                                        <td>{{ $bookRequest->status }}</td>
                                     </tr>
                                 @empty
                                     

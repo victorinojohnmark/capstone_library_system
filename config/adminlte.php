@@ -346,7 +346,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Book Requests',
-                    'url'  => '#',
+                    'url'  => '/admin/book-requests',
                 ],
                 [
                     'text' => 'Available Books',

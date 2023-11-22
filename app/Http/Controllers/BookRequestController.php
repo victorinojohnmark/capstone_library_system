@@ -13,7 +13,9 @@ class BookRequestController extends Controller
 {
     public function allBookRequests()
     {
-        //all book requests
+        return view('transaction.book-request.book-request-list', [
+            'bookRequests' => BookRequest::latest()->get()
+        ]);
     }
     public function index()
     {
@@ -60,5 +62,21 @@ class BookRequestController extends Controller
     public function destroy(BookRequest $bookRequest)
     {
         //delete book request
+    }
+
+    public function approveBookRequest(Request $request, BookRequest $bookRequest)
+    {
+        $bookRequest->approved_at = Carbon::now()->format('Y-m-d H:i:s');
+        $bookRequest->save();
+
+        return redirect()->route('admin.book-requests')->with('success', 'Book request successfully approved. Borrower will get notified.');
+    }
+
+    public function rejectBookRequest(Request $request, BookRequest $bookRequest)
+    {
+        $bookRequest->rejected_at = Carbon::now()->format('Y-m-d H:i:s');
+        $bookRequest->save();
+
+        return redirect()->route('admin.book-requests')->with('success', 'Book request successfully rejected. Borrower will get notified.');
     }
 }

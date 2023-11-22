@@ -28,4 +28,20 @@ class BookRequest extends Model
     {
         return $query->whereNotNull('approved_at');
     }
+
+    public function getStatusAttribute()
+    {
+        if($this->rejected_at) {
+            return 'Rejected';
+        }
+
+        if($this->approved_at) {
+            return 'Approved';
+        }
+
+        if(is_null($this->approved_at) && is_null($this->rejected_at)) {
+            return 'Pending';
+        }
+    }
+
 }

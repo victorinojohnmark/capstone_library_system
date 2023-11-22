@@ -27,7 +27,7 @@
                             <th scope="col">Author</th>
                             <th scope="col">ISBN</th>
                             <th scope="col">Publisher</th>
-                            <th scope="col">Remarks</th>
+                            <th scope="col">Status</th>
 
                         </tr>
                     </thead>
@@ -42,7 +42,9 @@
                                 <td>{{ $book->author }}</td>
                                 <td>{{ $book->isbn }}</td>
                                 <td>{{ $book->publisher }}</td>
-                                <td>{{ $book->remarks ?? '-' }}</td>
+                                <td>
+                                    {{ $book->status }}
+                                </td>
                             </tr>
                         @empty
                         @endforelse

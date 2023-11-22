@@ -43,6 +43,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/books', [BookController::class, 'index'])->name('book-index');
         Route::post('/books', [BookController::class, 'store'])->name('book-store');
         Route::post('/books/{book}', [BookController::class, 'update'])->name('book-update');
+
+        Route::get('/book-requests', [BookRequestController::class, 'allBookRequests'])->name('admin.book-requests');
+        Route::post('/book-requests/{bookRequest}/approve', [BookRequestController::class, 'approveBookRequest'])->name('admin.book-requests-approve');
+        Route::post('/book-requests/{bookRequest}/reject', [BookRequestController::class, 'rejectBookRequest'])->name('admin.book-requests-reject');
     });
 
 

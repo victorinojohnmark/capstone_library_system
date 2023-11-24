@@ -30,6 +30,7 @@
                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#lendBook{{ $bookWithReservation->id ?? null }}">
                                 <i class="far fa-thumbs-up"></i> Lend Book
                             </button>
+                            @include('transaction.book-transaction.modals.book-lending-modal')
                             
                         </td>
                     </tr>

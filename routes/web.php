@@ -50,12 +50,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/book-requests/{bookRequest}/reject', [BookRequestController::class, 'rejectBookRequest'])->name('admin.book-requests-reject');
 
         Route::get('/book-transactions', [BookTransactionController::class, 'index'])->name('admin.book-transactions');
+        Route::post('/book-transactions/lend/{book}', [BookTransactionController::class, 'lendBook'])->name('admin.book-transactions.lend-book');
+        Route::post('/book-transactions/return/{book}', [BookTransactionController::class, 'returnBook'])->name('admin.book-transactions.return-book');
     });
 
 
     Route::prefix('borrower')->group(function () {
 
         Route::get('/home', [BorrowerFrontendController::class, 'home'])->name('borrower.home');
+        Route::get('/borrowed-books', [BorrowerFrontendController::class, 'borrowedBooks'])->name('borrower.borrowed-books');
 
         Route::get('/book-requests', [BookRequestController::class, 'index'])->name('borrower.book-requests');
         Route::post('/book-requests', [BookRequestController::class, 'store'])->name('borrower.book-requests-store');

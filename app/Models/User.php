@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 use App\Models\Section;
 use App\Models\Adviser;
+use App\Models\BookTransaction;
 
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -74,5 +75,25 @@ class User extends Authenticatable implements MustVerifyEmail
     public function adviser()
     {
         return $this->belongsTo(Adviser::class);
+    }
+
+    public function bookTransactions()
+    {
+        return $this->hasMany(BookTransaction::class);
+    }
+
+    public function scopeBorrowedBooks($query)
+    {
+        return $query->whereHas('bookTransactions', function ($query) {
+            $query->whereNotNull('borrowed_at')->whereNull('returned_at');
+        });
+    }
+
+    public function borrowedBooks()
+    {
+        return $this->hasMany(BookTransaction::class)
+            ->whereNotNull('borrowed_at')
+            ->whereNull('returned_at')
+            ->with('book');
     }
 }

@@ -14,5 +14,12 @@ class BorrowerFrontendController extends Controller
         return view('borrower.borrower-home', []);
     }
 
+    public function borrowedBooks()
+    {
+        return view('borrower.borrowed-books.borrowed-books-list', [
+            'borrowedBookTransactions' => auth()->user()->borrowedBooks
+        ]);
+    }
+
     
 }

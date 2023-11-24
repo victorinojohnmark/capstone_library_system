@@ -13,22 +13,26 @@
                     <th scope="col">Book</th>
                     <th scope="col">Author</th>
                     <th scope="col">ISBN</th>
+                    <th scope="col">Date Borrowed</th>
+                    <th scope="col">Due Date</th>
                     <th scope="col">Option</th>
 
                 </tr>
             </thead>
             <tbody>
-                @forelse ($availableBooks as $availableBook)
+                @forelse ($borrowedBooks as $borrowedBook)
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
-                        <td>{{ $availableBook->title }}</td>
-                        <td>{{ $availableBook->author }}</td>
-                        <td>{{ $availableBook->isbn }}</td>
+                        <td>{{ $borrowedBook->title }}</td>
+                        <td>{{ $borrowedBook->author }}</td>
+                        <td>{{ $borrowedBook->isbn }}</td>
+                        <td>{{ $borrowedBook->latestBorrowedTransaction->borrowed_at }}</td>
+                        <td>{{ $borrowedBook->latestBorrowedTransaction->due_date }}</td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#lendBook{{ $availableBook->id ?? null }}">
-                                <i class="far fa-thumbs-up"></i> Lend Book
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#returnBook{{ $borrowedBook->id ?? null }}">
+                                <i class="far fa-thumbs-up"></i> Return Book
                             </button>
-                            @include('transaction.book-transaction.modals.available-book-lending-modal')
+                            @include('transaction.book-transaction.modals.book-return-modal')
                             
                         </td>
                     </tr>

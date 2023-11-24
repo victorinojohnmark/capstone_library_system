@@ -7,16 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\Book;
+use App\Models\User;
 
 class BookRequest extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['book_id', 'requested_by_id', 'requested_at', 'approved_at', 'rejected_at'];
+    protected $fillable = ['book_id', 'requested_by_id', 'requested_at', 'approved_at', 'rejected_at', 'due_date', 'cancelled_at'];
 
     public function book()
     {
         return $this->belongsTo(Book::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'requested_by_id');
     }
 
     public function scopeRejected($query)

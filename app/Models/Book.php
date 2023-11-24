@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\BookRequest;
+use App\Models\BookTransaction;
 
 class Book extends Model
 {
@@ -39,10 +40,15 @@ class Book extends Model
 
     }
 
+    public function bookTransactions()
+    {
+        return $this->hasMany(BookTransaction::class);
+    }
+
     public function scopeWithApprovedRequests($query)
     {
-        return $query->whereHas('bookRequests', function ($subquery) {
-            $subquery->whereNotNull('approved_at');
+        return $query->whereHas('bookRequests', function ($query) {
+            $query->whereNotNull('approved_at');
         });
     }
 
@@ -50,6 +56,62 @@ class Book extends Model
     {
         return $query->whereDoesntHave('bookRequests');
     }
+
+    public function scopeAvailableForLending($query)
+    {
+        return $query->withoutApprovalRequests()->whereDoesntHave('bookTransactions', function ($query) {
+            $query->whereNull('returned_at');
+        });
+    }
+
+    public function scopeBorrowedBooks($query)
+    {
+        return $query->whereHas('bookTransactions', function ($query) {
+            $query->whereNotNull('borrowed_at')->whereNull('returned_at');
+        });
+    }
+
+    public function getIsReservedAttribute()
+    {
+        return $this->latestBookRequest()->whereNotNull('approved_at')->exists();
+    }
+
+    public function getIsBorrowedAttribute()
+    {
+        return $this->latestBookTransaction()->whereNotNull('borrowed_at')->whereNull('returned_at')->exists();
+    }
+
+    public function getIsReturnedAttribute()
+    {
+        return $this->latestBookTransaction()->whereNotNull('borrowed_at')->whereNotNull('returned_at')->exists();
+    }
+
+    protected function latestBookRequest()
+    {
+        return $this->hasOne(BookRequest::class)->latest();
+    }
+
+    public function latestApprovedBookRequest()
+    {
+        return $this->hasOne(BookRequest::class)
+            ->whereNotNull('approved_at')
+            ->latest();
+    }
+
+    protected function latestBookTransaction()
+    {
+        return $this->hasOne(BookTransaction::class)->latest();
+    }
+
+    public function latestBorrowedTransaction()
+    {
+        return $this->hasOne(BookTransaction::class)
+            ->whereNotNull('borrowed_at')
+            ->whereNull('returned_at')
+            ->latest('borrowed_at');
+    }
+
+    
 
     
 }

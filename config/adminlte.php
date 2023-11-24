@@ -350,11 +350,7 @@ return [
                 ],
                 [
                     'text' => 'Borrow/Return',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'Borrowed Books',
-                    'url'  => '#',
+                    'url'  => '/admin/book-transactions',
                 ],
                 [
                     'text' => 'Overdue Boooks',

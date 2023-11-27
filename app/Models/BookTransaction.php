@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 use App\Models\Book;
 use App\Models\User;
@@ -23,5 +24,22 @@ class BookTransaction extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getIsOverdueAttribute()
+    {
+        $now = Carbon::today();
+        $dueDate = Carbon::parse($this->attributes['due_date']);
+
+        return $now->greaterThan($dueDate);
+    }
+
+    public function scopeOverdue(Builder $query)
+    {
+        $now = Carbon::today();
+
+        return $query->whereHas('transactions', function ($query) use ($now) {
+            $query->where('due_date', '<', $now);
+        });
     }
 }

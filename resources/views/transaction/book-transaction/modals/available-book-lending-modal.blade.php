@@ -16,7 +16,7 @@
                 </div>
                 
                 <div class="form-group col-md-12">
-                    <label for="user_id{{ $availableBook->id ?? null }}">Book Title</label>
+                    <label for="user_id{{ $availableBook->id ?? null }}">Borrower</label>
                     <select name="user_id" class="custom-select" id="user_id{{ $availableBook->id ?? null }}">
                         <option selected disabled>Select here...</option>
                         @forelse ($users as $user)

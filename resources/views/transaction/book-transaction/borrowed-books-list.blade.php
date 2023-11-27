@@ -27,7 +27,11 @@
                         <td>{{ $borrowedBook->author }}</td>
                         <td>{{ $borrowedBook->isbn }}</td>
                         <td>{{ $borrowedBook->latestBorrowedTransaction->borrowed_at }}</td>
-                        <td>{{ $borrowedBook->latestBorrowedTransaction->due_date }}</td>
+                        <td>{{ $borrowedBook->latestBorrowedTransaction->due_date }} 
+                            @if ($borrowedBook->latestBorrowedTransaction->is_overdue)
+                            <span class="badge badge-danger inline">Overdue</span>
+                            @endif
+                        </td>
                         <td>
                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#returnBook{{ $borrowedBook->id ?? null }}">
                                 <i class="far fa-thumbs-up"></i> Return Book

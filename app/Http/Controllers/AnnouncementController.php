@@ -12,54 +12,50 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        //
+        return view('announcement.announcement-list', [
+            'announcements' => Announcement::latest()->get(),
+            'announcement' => new Announcement()
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
+
+        $data['created_by_id'] = auth()->user()->id;
+
+        $announcement = Announcement::create($data);
+        return redirect()->route('announcements.index')->with('success', 'Announcement successfully added.');
+
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Announcement $announcement)
+    public function show(Request $request, Announcement $announcement)
     {
-        //
+        return view('announcement.announcement-show', [
+            'announcement' => $announcement
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Announcement $announcement)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Announcement $announcement)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
+
+        $announcement->fill($data);
+        $announcement->save();
+
+        return redirect()->route('announcements.index')->with('success', 'Announcement successfully updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Announcement $announcement)
     {
-        //
+        $announcement->delete();
+
+        return redirect()->route('announcements.index')->with('success', 'Announcement successfully deleted.');
     }
 }

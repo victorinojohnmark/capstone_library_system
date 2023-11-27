@@ -35,6 +35,14 @@ label {
     font-weight: normal !important;
 }
 
+.tox-promotion {
+    display: none;
+}
+
+.tox-statusbar__branding {
+    display: none;
+}
+
 
 
 /* .user-image {

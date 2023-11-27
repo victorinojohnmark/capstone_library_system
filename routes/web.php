@@ -9,6 +9,7 @@ use App\Http\Controllers\AdviserController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookRequestController;
 use App\Http\Controllers\BookTransactionController;
+use App\Http\Controllers\AnnouncementController;
 
 use App\Http\Controllers\Borrower\BorrowerFrontendController;
 
@@ -52,6 +53,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/book-transactions', [BookTransactionController::class, 'index'])->name('admin.book-transactions');
         Route::post('/book-transactions/lend/{book}', [BookTransactionController::class, 'lendBook'])->name('admin.book-transactions.lend-book');
         Route::post('/book-transactions/return/{book}', [BookTransactionController::class, 'returnBook'])->name('admin.book-transactions.return-book');
+
+        Route::resource('announcements', AnnouncementController::class);
     });
 
 

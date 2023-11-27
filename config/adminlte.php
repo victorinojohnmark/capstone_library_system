@@ -352,16 +352,12 @@ return [
                     'text' => 'Borrow/Return',
                     'url'  => '/admin/book-transactions',
                 ],
-                [
-                    'text' => 'Overdue Boooks',
-                    'url'  => '#',
-                ],
                 
             ],
         ],
         [
             'text'        => 'Announcements',
-            'url'         => '#',
+            'url'         => '/admin/announcements',
             'icon'        => 'fas fa-fw fa-bullhorn',
         ],
         ['header' => 'SYSTEM'],

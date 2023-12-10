@@ -16,19 +16,19 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
 
                 {{-- Calendar Widget --}}
                 <div class="calendar card rounded-0 p-3 bg-white shadow-sm mb-3">
-                    <h6 class="mb-0"><strong>Calendar Widger</strong></h6>
-					{{-- <div id="calendar"></div> --}}
+                    <div id="calendar-basic"></div>
                 </div>
+                
 
                 <x-announcement-widget :announcements="$announcements" />
 
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div id="books">
                     @include('layouts.message')
                     <div class="card">
@@ -40,29 +40,31 @@
                         </div>
 
                         <div class="card-body">
-                            <table id="books-table" class="table table-bordered table-hover table-stripe">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Author</th>
-                                        <th scope="col">ISBN</th>
-                                        <th scope="col">Publisher</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($books as $book)
+                            <div class="table-responsive">
+                                <table id="books-table" class="table table-bordered table-hover table-stripe">
+                                    <thead>
                                         <tr>
-                                            <td><strong>{{ $loop->index + 1 }}</strong></td>
-                                            <td>{{ $book->title }}</td>
-                                            <td>{{ $book->author }}</td>
-                                            <td>{{ $book->isbn }}</td>
-                                            <td>{{ $book->publisher }}</td>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Author</th>
+                                            <th scope="col">ISBN</th>
+                                            <th scope="col">Publisher</th>
                                         </tr>
-                                    @empty
-                                    @endforelse
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($books as $book)
+                                            <tr>
+                                                <td><strong>{{ $loop->index + 1 }}</strong></td>
+                                                <td>{{ $book->title }}</td>
+                                                <td>{{ $book->author }}</td>
+                                                <td>{{ $book->isbn }}</td>
+                                                <td>{{ $book->publisher }}</td>
+                                            </tr>
+                                        @empty
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -77,17 +79,32 @@
 
 @section('css')
     <link rel="stylesheet" href="/vendor/datatables/datatables.min.css">
+    <link rel="stylesheet" href="/vendor/zabuto-calendar/zabuto_calendar.min.css">
 @stop
 
 @section('js')
     <script src="/vendor/jquery/jquery.min.js"></script>
     {{-- <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
     <script src="/vendor/datatables/datatables.min.js"></script>
+    <script src="/vendor/zabuto-calendar/zabuto_calendar.min.js"></script>
     <script src="/js/custom.js"></script>
     <script>
         $(document).ready(function () {
             $('#books-table').DataTable({
                 "order": [],
+            });
+
+            // $('#calendar-basic').zabuto_calendar();
+
+            $("#calendar-basic").zabuto_calendar({
+                header_format: '[month] [year]',
+                week_starts: 'sunday',
+                show_days: true,
+                today_markup: '<span class="badge bg-primary text-white p-1">[day]</span>',
+                navigation_markup: {
+                    prev: '<i class="fas fa-chevron-circle-left"></i>',
+                    next: '<i class="fas fa-chevron-circle-right"></i>'
+                }
             });
 
         });

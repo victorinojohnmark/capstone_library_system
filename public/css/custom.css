@@ -43,6 +43,10 @@ label {
     display: none;
 }
 
+.modal-body.announcement img{
+    width: 100%;
+}
+
 
 
 /* .user-image {

@@ -10,6 +10,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookRequestController;
 use App\Http\Controllers\BookTransactionController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\BackupController;
 
 use App\Http\Controllers\Borrower\BorrowerFrontendController;
 
@@ -55,6 +56,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/book-transactions/return/{book}', [BookTransactionController::class, 'returnBook'])->name('admin.book-transactions.return-book');
 
         Route::resource('announcements', AnnouncementController::class);
+
+        Route::get('/db-backup', [BackupController::class, 'index'])->name('backup.index');
+        Route::get('/backup', [BackupController::class, 'createBackup'])->name('backup.create');
+        
     });
 
 
@@ -66,6 +71,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/book-requests', [BookRequestController::class, 'index'])->name('borrower.book-requests');
         Route::post('/book-requests', [BookRequestController::class, 'store'])->name('borrower.book-requests-store');
         Route::post('/book-requests/{bookRequest}', [BookRequestController::class, 'update'])->name('borrower.book-requests-update');
+
+        Route::get('/user/profile', [BorrowerFrontendController::class, 'profileView'])->name('borrower.profile');
+        Route::post('/user/profile', [BorrowerFrontendController::class, 'profileUpdate'])->name('borrower.profile.update');
     });
 
 });

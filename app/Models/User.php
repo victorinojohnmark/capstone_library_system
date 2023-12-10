@@ -77,6 +77,18 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Adviser::class);
     }
 
+    public function bookRequests()
+    {
+        return $this->hasMany(BookRequest::class, 'requested_by_id');
+    }
+
+    public function scopeApprovedBookRequests($query)
+    {
+        return $query->whereHas('bookRequests', function ($query) {
+            $query->approved();
+        });
+    }
+
     public function bookTransactions()
     {
         return $this->hasMany(BookTransaction::class);

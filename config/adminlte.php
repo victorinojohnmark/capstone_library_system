@@ -369,7 +369,7 @@ return [
         [
             'text'    => 'DB Backup',
             'icon'    => 'fas fa-fw fa-database',
-            'url'     => '#'
+            'url'     => '/admin/db-backup'
         ],
     ],
 

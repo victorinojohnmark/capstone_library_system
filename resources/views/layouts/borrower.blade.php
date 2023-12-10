@@ -12,6 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="/vendor/fontawesome-free/css/all.min.css">
 
 
     
@@ -56,6 +57,7 @@
                             <li class="nav-item dropdown">
                                 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img src="{{ Auth::user()->profile_image_url ?? '/img/user-avatar.png' }}" class="img-thumbnail img-fluid rounded-circle" style="width: 40px;" alt="">
                                     {{ Auth::user()->name }}
                                 </a>
 

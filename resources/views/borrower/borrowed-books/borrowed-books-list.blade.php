@@ -29,7 +29,8 @@
                                     <th scope="col">Author</th>
                                     <th scope="col">ISBN</th>
                                     <th scope="col">Date Borrowed</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Due Date</th>
+                                    {{-- <th scope="col">Status</th> --}}
         
                                 </tr>
                             </thead>
@@ -37,11 +38,16 @@
                                 @forelse ($borrowedBookTransactions as $transaction)
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $transaction->book->title }}</td>
+                                        <td>{{ $transaction->book->title }}
+                                            @if ($transaction->book->latestBorrowedTransaction->is_overdue)
+                                            <span class="badge badge-danger inline">Overdue</span>
+                                            @endif
+                                        </td>
                                         <td>{{ $transaction->book->author }}</td>
                                         <td>{{ $transaction->book->isbn }}</td>
                                         <td>{{  $transaction->borrowed_at }}</td>
-                                        <td>{{ $transaction->status }}</td>
+                                        <td>{{  $transaction->due_date }}</td>
+                                        {{-- <td>{{ $transaction->status }}</td> --}}
                                     </tr>
                                 @empty
                                     

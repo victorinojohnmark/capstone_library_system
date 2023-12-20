@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Models\BookRequest;
 use App\Models\Book;
 use App\Models\User;
+use App\Notifications\BookRequestNotification;
 
 class BookRequestController extends Controller
 {

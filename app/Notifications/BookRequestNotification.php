@@ -7,16 +7,17 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+use App\Models\BookRequest;
+
 class BookRequestNotification extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct()
+    protected $bookRequest;
+
+    public function __construct(BookRequest $bookRequest)
     {
-        //
+        $this->bookRequest = $bookRequest;
     }
 
     /**
@@ -48,7 +49,7 @@ class BookRequestNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'message' => $this->bookRequest->book->title . ' request has been submitted by ' . $notifiable->name,
+            'message' => 'Book: ' . $this->bookRequest->book->title . ' has been requested by ' . $notifiable->name,
             'action_url' => url('/admin/book-requests'),
         ];
     }

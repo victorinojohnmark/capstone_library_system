@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Spatie\Backup\Tasks\Backup\BackupJobFactory;
+
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Response;
+use Spatie\Backup\BackupDestination\Backup;
+use Spatie\Backup\BackupDestination\BackupDestination;
+use Illuminate\Support\Facades\Storage;
 
 class BackupController extends Controller
 {
@@ -19,52 +21,64 @@ class BackupController extends Controller
 
     public function createBackup()
     {
-        $name = '1';
+        try {
+            // Run the backup command
+        Artisan::call('backup:run');
 
-        Artisan::call('snapshot:create', ['name' => $name]);
+        // Get the disk instance
+        $disk = Storage::disk('public');
 
-        // Get the path to the created snapshot file
-        $pathToFile = storage_path("app/db-snapshots/{$name}.sql");
+        // Check if directory exist
+        if ($disk->exists(env('APP_NAME'))) {
+            // Get the list of files in the directory
+            $files = $disk->files(env('APP_NAME'));
 
-        // Provide the dumped file as a download response
-        return Response::download($pathToFile)->deleteFileAfterSend(true);
+            // Get the latest file without sorting the array
+            $latestFile = end($files);
 
-        // Create the snapshot using the db-snapshots package
-        // $createCommand = new Create(new DbSnapshots());
-        // $createCommand->handle($name);
+            // Check if the latest file exists
+            if ($disk->exists($latestFile)) {
+                // Download the latest backup file
+                return $disk->download($latestFile);
+            } else {
+                return redirect()->back()->with('error', 'Backup file does not exist.');
+            }
+        } else {
+            // Directory does not exist
+            return redirect()->back()->with('error', 'Backup Directory file does not exist.');
+        }
+        
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+       
+    }
 
-        // // Get the path to the created snapshot file
-        // $pathToFile = storage_path("app/public/databases/{$name}.sql");
+    public function getBackupFiles()
+    {
+        // Specify the directory path
+        $directory = 'ASHI LMS';
 
-        // // Provide the dumped file as a download response
-        // return Response::download($pathToFile)->deleteFileAfterSend(true);
+        // Get the disk instance
+        $disk = Storage::disk('public');
 
-        // Run the backup job
-        // $backupJob = BackupJobFactory::createFromArray(config('backup'));
-        // $backupJob->disableSignals();
-        // $backupJob->run();
+        // Check if the directory exists
+        if ($disk->exists($directory)) {
+            // Get the list of files in the directory
+            $files = $disk->files($directory);
 
-        // Download the backup file
-        // return response()->download($backupJob->getDestinationFile());
-        // Artisan::call('snapshot:create first-dump');
-        // return Artisan::output();
+            // Process each file
+            foreach ($files as $file) {
+                // Perform actions with each file, for example, display the file name
+                echo "File: $file\n";
+            }
 
-        // Set your database credentials
-        // $databaseName = env('DB_DATABASE');
-        // $userName = env('DB_USERNAME');
-        // $password = env('DB_PASSWORD');
-
-        // // Set the path where the dump file will be stored
-        // $pathToFile = storage_path('app/public/backups/database-dump.sql');
-
-        // // Dump the database to a file
-        // MySql::create()
-        //     ->setDbName($databaseName)
-        //     ->setUserName($userName)
-        //     ->setPassword($password)
-        //     ->dumpToFile($pathToFile);
-
-        // // Provide the dumped file as a download response
-        // return Response::download($pathToFile, 'database-dump.sql')->deleteFileAfterSend(true);
+            // You can also return the list of files if needed
+            return $files;
+        } else {
+            // Directory does not exist
+            echo "Directory '$directory' does not exist.\n";
+            return [];
+        }
     }
 }

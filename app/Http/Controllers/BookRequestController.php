@@ -8,6 +8,7 @@ use Carbon\Carbon;
 
 use App\Models\BookRequest;
 use App\Models\Book;
+use App\Models\User;
 
 class BookRequestController extends Controller
 {
@@ -38,9 +39,13 @@ class BookRequestController extends Controller
         $data['requested_at'] = Carbon::now()->format('Y-m-d H:i:s');
         $data['requested_by_id'] = auth()->id();
 
-        // for add - check if request already exist to avoid duplicate request
-
         $bookRequest = BookRequest::create($data);
+
+        $adminUsers = User::admins()->get();
+
+        foreach ($adminUsers as $user) {
+            $user->notify(new BookRequestNotification($bookRequest, auth()->user()));
+        }
 
         return redirect()->route('borrower.book-requests')->with('success', 'Book request submitted!');
         

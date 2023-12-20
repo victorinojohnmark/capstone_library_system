@@ -49,7 +49,7 @@ class BookRequestNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'message' => 'Book: ' . $this->bookRequest->book->title . ' has been requested by ' . $notifiable->name,
+            'message' => 'Book: "' . $this->bookRequest->book->title . '" has been requested by ' . $notifiable->name,
             'action_url' => url('/admin/book-requests'),
         ];
     }

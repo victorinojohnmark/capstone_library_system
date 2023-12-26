@@ -73,5 +73,12 @@ class BorrowerFrontendController extends Controller
         return redirect()->route('borrower.profile')->with('success', 'Profile updated successfully.');
     }
 
+    public function notifications(Request $request)
+    {
+        return view('borrower.notifications.notifications-list', [
+            'notifications' => auth()->user()->notifications()->latest()->get(),
+        ]);
+    }
+
     
 }

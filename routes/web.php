@@ -68,6 +68,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/home', [BorrowerFrontendController::class, 'home'])->name('borrower.home');
         Route::get('/borrowed-books', [BorrowerFrontendController::class, 'borrowedBooks'])->name('borrower.borrowed-books');
 
+        Route::get('/notifications', [BorrowerFrontendController::class, 'notifications'])->name('borrower.notifications');
+
         Route::get('/book-requests', [BookRequestController::class, 'index'])->name('borrower.book-requests');
         Route::post('/book-requests', [BookRequestController::class, 'store'])->name('borrower.book-requests-store');
         Route::post('/book-requests/{bookRequest}', [BookRequestController::class, 'update'])->name('borrower.book-requests-update');

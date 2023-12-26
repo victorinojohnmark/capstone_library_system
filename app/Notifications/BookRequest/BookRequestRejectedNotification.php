@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\BookRequest;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 
 use App\Models\BookRequest;
 
-class BookRequestNotification extends Notification
+class BookRequestRejectedNotification extends Notification
 {
     use Queueable;
 
@@ -27,7 +27,7 @@ class BookRequestNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['mail','database'];
     }
 
     /**
@@ -36,9 +36,9 @@ class BookRequestNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('Your book request for "'. $this->bookRequest->book->title. '" has been rejected.')
+                    ->action('View Book Request', url('/borrower/book-requests'));
+                    // ->line('Proceed to the library to pick up your book.');
     }
 
     /**
@@ -49,8 +49,8 @@ class BookRequestNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'message' => 'Book: "' . $this->bookRequest->book->title . '" has been requested by ' . $notifiable->name,
-            'action_url' => url('/admin/book-requests'),
+            'message' => 'Your book request for "'. $this->bookRequest->book->title. '" has been rejected.',
+            'action_url' => url('/borrower/book-requests'),
         ];
     }
 }

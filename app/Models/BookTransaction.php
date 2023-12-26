@@ -16,6 +16,8 @@ class BookTransaction extends Model
 
     protected $fillable = ['book_id', 'user_id', 'borrowed_at', 'returned_at', 'due_date', 'cancelled_at'];
 
+    protected $appends = ['overdue_days'];
+
     public function book()
     {
         return $this->belongsTo(Book::class);
@@ -34,12 +36,22 @@ class BookTransaction extends Model
         return $now->greaterThan($dueDate);
     }
 
-    public function scopeOverdue(Builder $query)
+    public function scopeOverdue($query)
     {
         $now = Carbon::today();
 
-        return $query->whereHas('transactions', function ($query) use ($now) {
-            $query->where('due_date', '<', $now);
-        });
+        return $query->where('due_date', '<', $now)
+                ->where(function ($query) use ($now) {
+                    $query->whereNull('returned_at')
+                        ->orWhereNull('cancelled_at');
+                });
+    }
+
+    public function getOverdueDaysAttribute()
+    {
+        $now = Carbon::today();
+        $dueDate = Carbon::parse($this->attributes['due_date']);
+
+        return max(0, $now->diffInDays($dueDate));
     }
 }

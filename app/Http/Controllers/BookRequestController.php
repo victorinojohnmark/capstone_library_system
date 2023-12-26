@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Carbon\Carbon;
 
 use App\Models\BookRequest;
 use App\Models\Book;
 use App\Models\User;
-use App\Notifications\BookRequestNotification;
+
+use App\Notifications\BookRequest\BookRequestNotification;
+use App\Notifications\BookRequest\BookRequestApprovedNotification;
+use App\Notifications\BookRequest\BookRequestRejectedNotification;
 
 class BookRequestController extends Controller
 {
@@ -45,7 +47,7 @@ class BookRequestController extends Controller
         $adminUsers = User::admins()->get();
 
         foreach ($adminUsers as $user) {
-            $user->notify(new BookRequestNotification($bookRequest, auth()->user()));
+            $user->notify(new BookRequestNotification($bookRequest));
         }
 
         return redirect()->route('borrower.book-requests')->with('success', 'Book request submitted!');
@@ -75,6 +77,8 @@ class BookRequestController extends Controller
         $bookRequest->approved_at = Carbon::now()->format('Y-m-d H:i:s');
         $bookRequest->save();
 
+        $bookRequest->user->notify(new BookRequestApprovedNotification($bookRequest));
+
         return redirect()->route('admin.book-requests')->with('success', 'Book request successfully approved. Borrower will get notified.');
     }
 
@@ -82,6 +86,8 @@ class BookRequestController extends Controller
     {
         $bookRequest->rejected_at = Carbon::now()->format('Y-m-d H:i:s');
         $bookRequest->save();
+
+        $bookRequest->user->notify(new BookRequestRejectedNotification($bookRequest));
 
         return redirect()->route('admin.book-requests')->with('success', 'Book request successfully rejected. Borrower will get notified.');
     }

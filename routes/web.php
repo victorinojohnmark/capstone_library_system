@@ -10,6 +10,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookRequestController;
 use App\Http\Controllers\BookTransactionController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\BookHistoryController;
 use App\Http\Controllers\BackupController;
 
 use App\Http\Controllers\Borrower\BorrowerFrontendController;
@@ -56,6 +57,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/book-transactions/return/{book}', [BookTransactionController::class, 'returnBook'])->name('admin.book-transactions.return-book');
 
         Route::resource('announcements', AnnouncementController::class);
+
+        Route::get('/book-history', [BookHistoryController::class, 'index'])->name('book-history.index');
 
         Route::get('/db-backup', [BackupController::class, 'index'])->name('backup.index');
         Route::get('/backup', [BackupController::class, 'createBackup'])->name('backup.create');

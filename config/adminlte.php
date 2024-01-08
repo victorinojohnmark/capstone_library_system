@@ -364,7 +364,7 @@ return [
         [
             'text'    => 'History',
             'icon'    => 'fas fa-fw fa-history',
-            'url'     => '#'
+            'url'     => '/admin/book-history'
         ],
         [
             'text'    => 'DB Backup',

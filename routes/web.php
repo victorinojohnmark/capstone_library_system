@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\BorrowerController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\AdviserController;
@@ -30,6 +31,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::prefix('admin')->group(function () {
         Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
+
+        Route::get('/notifications', [NotificationController::class, 'index'])->name('borrower-index');
         
         Route::get('/borrowers', [BorrowerController::class, 'index'])->name('borrower-index');
         Route::post('/borrowers', [BorrowerController::class, 'store'])->name('borrower-store');

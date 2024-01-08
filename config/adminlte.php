@@ -310,8 +310,8 @@ return [
             'text'        => 'Notifications',
             'url'         => '#',
             'icon'        => 'fas fa-fw fa-bell',
-            'label'       => 4,
-            'label_color' => 'danger',
+            'label'       => '',
+            'label_color' => '',
         ],
         ['header' => 'MASTER RECORDS'],
         [

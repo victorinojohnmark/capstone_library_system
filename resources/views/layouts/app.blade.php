@@ -63,7 +63,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     @if (Auth::user()->is_admin)
                                     <a class="dropdown-item" href="/admin/home">Dashboard</a>
-                                    <a class="dropdown-item" href="#">Profile</a>
+                                    {{-- <a class="dropdown-item" href="#">Profile</a> --}}
                                     @else
                                     <a class="dropdown-item" href="/borrower/home">Dashboard</a>
                                     <a class="dropdown-item" href="{{ route('borrower.profile') }}">Profile</a>

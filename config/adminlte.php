@@ -308,7 +308,7 @@ return [
         // ],
         [
             'text'        => 'Notifications',
-            'url'         => '#',
+            'url'         => '/admin/notifications',
             'icon'        => 'fas fa-fw fa-bell',
             'label'       => '',
             'label_color' => '',
@@ -370,6 +370,11 @@ return [
             'text'    => 'DB Backup',
             'icon'    => 'fas fa-fw fa-database',
             'url'     => '/admin/db-backup'
+        ],
+        [
+            'text'    => 'User Setting',
+            'icon'    => 'fas fa-fw fa-user',
+            'url'     => '/admin/user-profile'
         ],
     ],
 

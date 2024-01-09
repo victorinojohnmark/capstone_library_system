@@ -64,7 +64,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getProfileImageUrlAttribute()
     {
-        return $this->image_filename ? '/storage/profile_picture/' . $this->image_filename : '/img/img-placeholder.jpg';
+        return $this->image_filename ? '/storage/profile_picture/' . $this->image_filename : '/img/ashi-library-logo.png';
     }
 
     public function section()

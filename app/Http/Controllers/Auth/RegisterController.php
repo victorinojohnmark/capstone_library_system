@@ -58,7 +58,7 @@ class RegisterController extends Controller
 
             'lastname' => ['required'],
             'firstname' => ['required'],
-            'middle_initial' => ['nullable'],
+            // 'middle_initial' => ['nullable'],
             'email' => ['required', 'unique:users','email'],
             'password' => ['required','confirmed','min:6'],
             'lrn' => ['required'],
@@ -100,7 +100,7 @@ class RegisterController extends Controller
 
             'lastname' => $data['lastname'],
             'firstname' => $data['firstname'],
-            'middle_initial' => $data['middle_initial'] ?? null,
+            // 'middle_initial' => $data['middle_initial'] ?? null,
             'email' => $data['email'],
             'password' => $data['password'],
             'lrn' => $data['lrn'],

@@ -16,6 +16,17 @@ class SectionController extends Controller
         ]);
     }
 
+    public function fetchSection(Request $request)
+    {
+        return $sections = Section::where(function($query) use($request) {
+            if($request->query('grade_no')) {
+                $query->where('grade_no', $request->query('grade_no'));
+            }
+        })
+        ->orderBy('section_name')->get();
+        
+    }
+
     public function store(Request $request)
     {
         $data = $request->validate([

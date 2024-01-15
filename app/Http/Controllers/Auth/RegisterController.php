@@ -62,7 +62,7 @@ class RegisterController extends Controller
             'email' => ['required', 'unique:users','email'],
             'password' => ['required','confirmed','min:6'],
             'lrn' => ['required','min:11',"max:11"],
-            'grade' => ['nullable'],
+            'grade_no' => ['sometimes','integer'],
             'section_id' => ['nullable'],
             'adviser_id' => ['nullable'],
             'type' => ['required'],
@@ -104,7 +104,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => $data['password'],
             'lrn' => $data['lrn'],
-            'grade' => $data['grade'] ?? null,
+            'grade_no' => $data['grade_no'] ?? null,
             'section_id' => $data['section_id'] ?? null,
             'adviser_id' => $data['adviser_id'] ?? null,
             'type' => $data['type']

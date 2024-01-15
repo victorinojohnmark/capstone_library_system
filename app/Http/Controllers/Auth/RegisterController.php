@@ -61,7 +61,7 @@ class RegisterController extends Controller
             // 'middle_initial' => ['nullable'],
             'email' => ['required', 'unique:users','email'],
             'password' => ['required','confirmed','min:6'],
-            'lrn' => ['required'],
+            'lrn' => ['required','min:11',"max:11"],
             'grade' => ['nullable'],
             'section_id' => ['nullable'],
             'adviser_id' => ['nullable'],

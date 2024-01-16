@@ -32,9 +32,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
 
-        Route::get('/notifications', [NotificationController::class, 'index'])->name('borrower-index');
+        Route::get('/notifications', [NotificationController::class, 'index'])->name('notification-index');
         
         Route::get('/borrowers', [BorrowerController::class, 'index'])->name('borrower-index');
+        Route::get('/borrowers/create', [BorrowerController::class, 'create'])->name('borrower-create');
+        Route::get('/borrowers/{borrower}', [BorrowerController::class,'show'])->name('borrower-show');
         Route::post('/borrowers', [BorrowerController::class, 'store'])->name('borrower-store');
         Route::post('/borrowers/{borrower}', [BorrowerController::class, 'update'])->name('borrower-update');
 

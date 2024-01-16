@@ -13,8 +13,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="float-right d-inline-flex">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalBorrower"><i class="fas fa-fw fa-user-plus"></i> Add Borrower</button>
-                    @include('master.borrowers.borrowermodal')
+                    <a href="{{ route('borrower-create') }}" class="btn btn-primary"><i class="fas fa-fw fa-user-plus"></i> Add Borrower</a>
                 </div>
             </div>
 
@@ -36,8 +35,7 @@
                             <tr>
                                 <td><strong>{{ $loop->index + 1 }}</strong></td>
                                 <td>
-                                    <strong><a href="#" data-toggle="modal" data-target="#modalBorrower{{ $borrower->id }}">{{ $borrower->name }}</a></strong>
-                                    @include('master.borrowers.borrowermodal')
+                                    <strong><a href="{{ route('borrower-show', ['borrower' => $borrower->id]) }}">{{ $borrower->name }}</a></strong>
                                 </td>
                                 <td>{{ $borrower->lrn ?? '-' }}</td>
                                 <td>{{ $borrower->grade ?? '-' }}</td>

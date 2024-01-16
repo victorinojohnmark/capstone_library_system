@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->smallInteger('grade_no')->nullalbe()->after('grade');
+            $table->smallInteger('grade_no')->nullable()->after('grade');
             $table->dropColumn('grade');
         });
     }

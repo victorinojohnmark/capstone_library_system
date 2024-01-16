@@ -28,18 +28,40 @@ class BorrowerController extends Controller
         ]);
     }
 
+    public function show(Request $request, User $borrower)
+    {   
+        // dd($borrower);
+        return view('master.borrowers.borrowershow', [
+            'borrower' => $borrower,
+            'grades' => Helper::getDropDownJson('grades.json'),
+            'sections' => Section::orderBy('section_name')->get(),
+            'advisers' => Adviser::latest()->get(),
+            'types' => Helper::getDropDownJson('user_types.json'),
+        ]);
+    }
+
+    public function create(Request $request)
+    {   
+        return view('master.borrowers.borrowercreate', [
+            'borrower' => new User(),
+            'grades' => Helper::getDropDownJson('grades.json'),
+            'sections' => Section::orderBy('section_name')->get(),
+            'advisers' => Adviser::latest()->get(),
+            'types' => Helper::getDropDownJson('user_types.json'),
+        ]);
+    }
+
     public function store(Request $request)
     {
         $data = $request->validate([
             'lastname' => 'required',
             'firstname' => 'required',
-            'middle_initial' => 'nullable',
             'email' => 'required|unique:users,email',
             'password' => 'required|confirmed|min:6',
-            'lrn' => 'required',
-            'grade' => 'nullable',
-            'section_id' => 'nullable',
-            'adviser_id' => 'nullable',
+            'lrn' => 'sometimes|digits:11|unique:users,lrn',
+            'grade' => 'sometimes|integer',
+            'section_id' => 'sometimes|integer',
+            'adviser_id' => 'sometimes|integer',
             'type' => 'required',
             'image_filename' => 'required|mimes:jpg,jpeg,png|max:5120'
         ]);
@@ -68,16 +90,16 @@ class BorrowerController extends Controller
 
     public function update(Request $request, User $borrower)
     {
+
+        // dd($request->all());
         $data = $request->validate([
             'lastname' => 'required',
             'firstname' => 'required',
-            'middle_initial' => 'nullable',
-            'email' => 'required|unique:users,email,'.$borrower->id.',id',
-            'lrn' => 'required',
-            'grade' => 'nullable',
-            'section_id' => 'nullable',
-            'adviser_id' => 'nullable',
-            'type' => 'required',
+            'type' => 'required|in:Student,Faculty,Staff',
+            'lrn' => 'sometimes|digits:11|unique:users,lrn,'. $borrower->id,
+            'grade_no' => 'required_if:type,Student|integer',
+            'section_id' => 'required_if:type,Student|integer',
+            'adviser_id' => 'required_if:type,Student|integer',
             'image_filename' => 'sometimes|mimes:jpg,jpeg,png|max:5120'
         ]);
 

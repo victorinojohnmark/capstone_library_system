@@ -24,9 +24,13 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Title</th>
-                            <th scope="col">Author</th>
+                            {{-- <th scope="col">Author</th> --}}
                             <th scope="col">ISBN</th>
-                            <th scope="col">Publisher</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Year</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Condition</th>
                             <th scope="col">Status</th>
 
                         </tr>
@@ -39,9 +43,13 @@
                                     <strong><a href="#" data-toggle="modal" data-target="#modalBook{{ $book->id }}">{{ $book->title }}</a></strong>
                                     @include('master.books.bookmodal')
                                 </td>
-                                <td>{{ $book->author }}</td>
+                                {{-- <td>{{ $book->author }}</td> --}}
                                 <td>{{ $book->isbn }}</td>
-                                <td>{{ $book->publisher }}</td>
+                                <td>{{ $book->category }}</td>
+                                <td>{{ $book->subject }}</td>
+                                <td>{{ $book->year }}</td>
+                                <td>{{ $book->quantity }}</td>
+                                <td>{{ $book->condition }}</td>
                                 <td>
                                     {{ $book->status }}
                                 </td>

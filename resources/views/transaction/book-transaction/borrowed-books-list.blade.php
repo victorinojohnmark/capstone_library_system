@@ -6,12 +6,12 @@
     </div>
 
     <div class="card-body">
-        <table class="datatable table table-bordered table-hover table-stripe">
+        <table id="borrowedBookDatatable" class="table table-bordered table-hover table-stripe">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Book</th>
-                    <th scope="col">Author</th>
+                    <th scope="col">Borrower</th>
                     <th scope="col">ISBN</th>
                     <th scope="col">Date Borrowed</th>
                     <th scope="col">Due Date</th>
@@ -24,7 +24,7 @@
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $borrowedBook->title }}</td>
-                        <td>{{ $borrowedBook->author }}</td>
+                        <td>{{ $borrowedBook->latestBorrowedTransaction->user->name }}</td>
                         <td>{{ $borrowedBook->isbn }}</td>
                         <td>{{ $borrowedBook->latestBorrowedTransaction->borrowed_at }}</td>
                         <td>{{ $borrowedBook->latestBorrowedTransaction->due_date }} 

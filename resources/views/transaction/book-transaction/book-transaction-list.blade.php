@@ -71,6 +71,11 @@
                 "order": [],
             });
 
+            $('#borrowedBookDatatable').DataTable({
+                "order": [],
+                "searching": false
+            });
+
         });
     </script>
 @stop

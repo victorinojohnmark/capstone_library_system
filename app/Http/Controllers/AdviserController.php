@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Adviser;
 use Illuminate\Http\Request;
+use App\System\Helper;
 
 class AdviserController extends Controller
 {
@@ -11,7 +12,8 @@ class AdviserController extends Controller
     public function index()
     {
         return view('master.others.adviserlist', [
-            'advisers' => Adviser::latest()->get()
+            'advisers' => Adviser::latest()->get(),
+            'grades' => Helper::getDropDownJson('grades.json'),
         ]);
     }
 
@@ -29,7 +31,8 @@ class AdviserController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|unique:advisers,name'
+            'name' => 'required|unique:advisers,name',
+            'grade_no' =>'required'
         ]);
 
         $adviser = Adviser::create($data);
@@ -41,7 +44,8 @@ class AdviserController extends Controller
     public function update(Request $request, Adviser $adviser)
     {
         $data = $request->validate([
-            'name' => 'required|unique:advisers,name,'.$adviser->id.',id'
+            'name' => 'required|unique:advisers,name,'.$adviser->id.',id',
+            'grade_no' =>'required'
         ]);
 
         $adviser->fill($data);

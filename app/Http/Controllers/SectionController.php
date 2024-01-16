@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Section;
+use App\System\Helper;
+
 
 class SectionController extends Controller
 {
@@ -12,7 +14,8 @@ class SectionController extends Controller
     {
         return view('master.others.sectionlist', [
             'section' => new Section(),
-            'sections' => Section::orderBy('section_name')->get()
+            'sections' => Section::orderBy('section_name')->get(),
+            'grades' => Helper::getDropDownJson('grades.json'),
         ]);
     }
 
@@ -30,7 +33,8 @@ class SectionController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'section_name' => 'required|unique:sections,section_name'
+            'section_name' => 'required|unique:sections,section_name',
+            'grade_no' =>'required'
         ]);
 
         $section = Section::create($data);
@@ -42,7 +46,8 @@ class SectionController extends Controller
     public function update(Request $request, Section $section)
     {
         $data = $request->validate([
-            'section_name' => 'required|unique:sections,section_name,'.$section->id.',id'
+            'section_name' => 'required|unique:sections,section_name,'.$section->id.',id',
+            'grade_no' =>'required'
         ]);
 
         $section->fill($data);

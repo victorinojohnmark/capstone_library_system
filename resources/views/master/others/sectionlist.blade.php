@@ -30,6 +30,18 @@
                                         <label for="sectionName{{ $section->id ?? null }}">Section</label>
                                         <input type="text" name="section_name" class="form-control" id="sectionName{{ $section->id ?? null }}" value="{{ old('section_name', $section->section_name ?? null) }}" required>
                                     </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="grade_no">Grade No</label>
+                                        <select name="grade_no" class="custom-select" id="grade_no">
+                                            <option selected disabled>Select here...</option>
+                                            @forelse ($grades as $grade)
+                                                <option value="{{ $grade['grade_no'] }}">{{ $grade['grade_name'] }}</option>
+                                            @empty
+                                                
+                                            @endforelse
+                                        </select>
+                                    </div>
                                 
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -49,6 +61,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
+                            <th scope="col">Grade No</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,11 +87,22 @@
                                                         <label for="sectionName{{ $section->id ?? null }}">Section</label>
                                                         <input type="text" name="section_name" class="form-control" id="sectionName{{ $section->id }}" value="{{ old('section_name', $section->section_name ?? null) }}" required>
                                                     </div>
+
+                                                    <div class="form-group col-md-4">
+                                                        <label for="grade_no">Grade No</label>
+                                                        <select name="grade_no" class="custom-select" id="grade_no">
+                                                            <option selected disabled>Select here...</option>
+                                                            @forelse ($grades as $grade)
+                                                                <option value="{{ $grade['grade_no'] }}" {{ $section->grade_no == $grade['grade_no'] ? 'selected' : null }}>{{ $grade['grade_name'] }}</option>
+                                                            @empty
+                                                                
+                                                            @endforelse
+                                                        </select>
+                                                    </div>
                                                 
                                                     <div class="col-md-12">
                                                         <button type="submit" class="btn btn-primary">Submit</button>
                                                     </div>
-                                                    
                                                 </form>
                                             </div>
                                           </div>
@@ -86,6 +110,7 @@
                                     </div>
                                 
                                 </td>
+                                <td>{{ $section->grade_no }}</td>
                             </tr>
                         @empty
                         @endforelse

@@ -29,7 +29,7 @@
 
                 <div class="form-group col-md-6">
                     <label for="due_date{{ $availableBook->id ?? null }}">Due Date</label>
-                    <input type="date" name="due_date" class="form-control" id="due_date{{ $availableBook->id ?? null }}" required>
+                    <input type="date" name="due_date" class="form-control" id="due_date{{ $availableBook->id ?? null }}" min="<?= date('Y-m-d'); ?>" required>
                 </div>
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-primary">Submit</button>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use App\System\Helper;
 
 class BookController extends Controller
 {
@@ -11,7 +12,9 @@ class BookController extends Controller
     {
         return view('master.books.booklist', [
             'book' => new Book(),
-            'books' => Book::orderBy('title')->get()
+            'books' => Book::orderBy('title')->get(),
+            'categories' => Helper::getDropDownJson('book_category.json'),
+            'conditions' => Helper::getDropDownJson('book_condition.json'),
         ]);
     }
 
@@ -22,6 +25,11 @@ class BookController extends Controller
             'author' => 'required',
             'isbn' => 'required|unique:books,isbn',
             'publisher' => 'required',
+            'category' =>'required',
+            'subject' => 'required',
+            'year' => 'required|numeric|between:1900,' . date('Y'),
+            'quantity' =>'required|integer',
+            'condition' =>'required',
             'remarks' => 'nullable'
         ]);
 
@@ -42,6 +50,11 @@ class BookController extends Controller
             'author' => 'required',
             'isbn' => 'required|unique:books,isbn,' . $book->id . ',id',
             'publisher' => 'required',
+            'category' =>'required',
+            'subject' => 'required',
+            'year' => 'required|numeric|between:1900,' . date('Y'),
+            'quantity' =>'required|integer',
+            'condition' =>'required',
             'remarks' => 'nullable'
         ]);
 

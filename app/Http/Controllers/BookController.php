@@ -20,7 +20,7 @@ class BookController extends Controller
         $data = $request->validate([
             'title' => 'required|unique:books,title',
             'author' => 'required',
-            'isbn' => 'required',
+            'isbn' => 'required|unique:books,isbn',
             'publisher' => 'required',
             'remarks' => 'nullable'
         ]);
@@ -40,7 +40,7 @@ class BookController extends Controller
         $data = $request->validate([
             'title' => 'required|unique:books,title,'.$book->id.',id',
             'author' => 'required',
-            'isbn' => 'required',
+            'isbn' => 'required|unique:books,isbn,' . $book->id . ',id',
             'publisher' => 'required',
             'remarks' => 'nullable'
         ]);

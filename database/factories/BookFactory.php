@@ -21,6 +21,11 @@ class BookFactory extends Factory
             'author' => $this->faker->name,
             'isbn' => $this->faker->isbn13,
             'publisher' => $this->faker->company,
+            'category' => $this->faker->randomElement(['Books', 'Magazine', 'Journal']),
+            'subject' => $this->faker->word,
+            'year' => $this->faker->year,
+            'quantity' => $this->faker->numberBetween(1, 100),
+            'condition' => $this->faker->randomElement(['New','Fine', 'Good', 'Fair', 'Poor']),
         ];
     }
 }

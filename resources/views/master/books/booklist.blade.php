@@ -32,6 +32,7 @@
                             <th scope="col">Quantity</th>
                             <th scope="col">Condition</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Options</th>
 
                         </tr>
                     </thead>
@@ -52,6 +53,31 @@
                                 <td>{{ $book->condition }}</td>
                                 <td>
                                     {{ $book->status }}
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#bookModal{{ $book->id }}"><i class="fas fa-trash"></i></button>
+                                    <div class="modal fade" id="bookModal{{ $book->id ?? null }}" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title">Delete Book Confirmation</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <form action="{{ route('book-delete', ['book' => $book->id]) }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="id" value="{{ $book->id }}">
+                                                <p>Are you sure you want to delete this book from the record?</p>
+                                                <p>Book: <strong>{{ $book->title }}</strong></p>
+                                                <button type="submit" class="btn btn-danger btn-sm">Confirm Delete</button>
+                                              </form>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
                                 </td>
                             </tr>
                         @empty

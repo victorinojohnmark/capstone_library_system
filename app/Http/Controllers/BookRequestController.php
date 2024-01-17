@@ -32,6 +32,15 @@ class BookRequestController extends Controller
         ]);
     }
 
+    public function create(Request $request)
+    {   
+        //create book request
+        return view('borrower.book-requests.book-request-create', [
+            'bookRequest' => new BookRequest(),
+            'books' => Book::AvailableForLending()->orderBy('title')->get()
+        ]);
+    }
+
     public function store(Request $request)
     {
         //save book request

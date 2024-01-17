@@ -56,4 +56,11 @@ class SectionController extends Controller
         session()->flash('success', $section->section_name . ' updated successfully.');
         return redirect()->route('section-index');
     }
+
+    public function destroy(Section $section)
+    {
+        $section->delete();
+        session()->flash('success', $section->section .'deleted successfully.');
+        return redirect()->route('section-index');
+    }
 }

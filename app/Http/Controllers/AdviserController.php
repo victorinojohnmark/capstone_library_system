@@ -57,6 +57,8 @@ class AdviserController extends Controller
 
     public function destroy(Adviser $adviser)
     {
-        //
+        $adviser->delete();
+        session()->flash('success', $adviser->name .'deleted successfully.');
+        return redirect()->route('adviser-index');
     }
 }

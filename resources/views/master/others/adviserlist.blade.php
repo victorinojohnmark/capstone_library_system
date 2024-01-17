@@ -62,6 +62,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col">Grade</th>
+                            <th scope="col">Option</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -112,6 +113,31 @@
                                 
                                 </td>
                                 <td>{{ $adviser->grade_no }}</td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#adviserModalDelete{{ $adviser->id }}"><i class="fas fa-trash"></i></button>
+                                    <div class="modal fade" id="adviserModalDelete{{ $adviser->id ?? null }}" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title">Delete Adviser Confirmation</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <form action="{{ route('adviser-delete', ['adviser' => $adviser->id]) }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="id" value="{{ $adviser->id }}">
+                                                <p>Are you sure you want to delete this adviser from the record?</p>
+                                                <p>Adviser: <strong>{{ $adviser->name }}</strong></p>
+                                                <button type="submit" class="btn btn-danger btn-sm">Confirm Delete</button>
+                                              </form>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         @empty
                         @endforelse

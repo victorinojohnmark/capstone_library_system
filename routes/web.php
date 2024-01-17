@@ -39,18 +39,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/borrowers/{borrower}', [BorrowerController::class,'show'])->name('borrower-show');
         Route::post('/borrowers', [BorrowerController::class, 'store'])->name('borrower-store');
         Route::post('/borrowers/{borrower}', [BorrowerController::class, 'update'])->name('borrower-update');
+        Route::delete('/borrowers/{borrower}', [BorrowerController::class, 'destroy'])->name('borrower-delete');
 
         Route::get('/sections', [SectionController::class, 'index'])->name('section-index');
         Route::post('/sections', [SectionController::class, 'store'])->name('section-store');
         Route::post('/sections/{section}', [SectionController::class, 'update'])->name('section-update');
+        Route::delete('/sections/{section}', [SectionController::class, 'destroy'])->name('section-delete');
 
         Route::get('/advisers', [AdviserController::class, 'index'])->name('adviser-index');
         Route::post('/advisers', [AdviserController::class, 'store'])->name('adviser-store');
         Route::post('/advisers/{adviser}', [AdviserController::class, 'update'])->name('adviser-update');
+        Route::delete('/advisers/{adviser}', [AdviserController::class, 'destroy'])->name('adviser-delete');
 
 
         Route::get('/books', [BookController::class, 'index'])->name('book-index');
         Route::post('/books', [BookController::class, 'store'])->name('book-store');
+        Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('book-delete');
         Route::post('/books/{book}', [BookController::class, 'update'])->name('book-update');
 
         Route::get('/book-requests', [BookRequestController::class, 'allBookRequests'])->name('admin.book-requests');
@@ -79,6 +83,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/notifications', [BorrowerFrontendController::class, 'notifications'])->name('borrower.notifications');
 
         Route::get('/book-requests', [BookRequestController::class, 'index'])->name('borrower.book-requests');
+        Route::get('/book-requests/create', [BookRequestController::class, 'create'])->name('borrower.book-requests-create');
         Route::post('/book-requests', [BookRequestController::class, 'store'])->name('borrower.book-requests-store');
         Route::post('/book-requests/{bookRequest}', [BookRequestController::class, 'update'])->name('borrower.book-requests-update');
 

@@ -28,6 +28,7 @@
                             <th scope="col">Section</th>
                             <th scope="col">Adviser</th>
                             <th scope="col">Type</th>
+                            <th scope="col">Option</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,6 +43,31 @@
                                 <td>{{ $borrower->section_id ? $borrower->section->section_name : '-' }}</td>
                                 <td>{{ $borrower->adviser_id ? $borrower->adviser->name : '-' }}</td>
                                 <td>{{ $borrower->type }}</td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#borrowerModal{{ $borrower->id }}"><i class="fas fa-trash"></i></button>
+                                    <div class="modal fade" id="borrowerModal{{ $borrower->id ?? null }}" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title">Delete Borrower Confirmation</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <form action="{{ route('borrower-delete', ['borrower' => $borrower->id]) }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="id" value="{{ $borrower->id }}">
+                                                <p>Are you sure you want to delete this borrower from the record?</p>
+                                                <p>Borrower: <strong>{{ $borrower->name }}</strong></p>
+                                                <button type="submit" class="btn btn-danger btn-sm">Confirm Delete</button>
+                                              </form>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         @empty
                         @endforelse

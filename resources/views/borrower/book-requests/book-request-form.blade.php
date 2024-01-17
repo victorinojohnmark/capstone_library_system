@@ -2,7 +2,7 @@
     @csrf
     <div class="form-group col-md-12">
         <label for="book_id{{ $bookRequest->id ?? null }}">Book Title</label>
-        <select name="book_id" class="custom-select" id="book_id{{ $bookRequest->id ?? null }}">
+        <select name="book_id" class="custom-select" id="book_id{{ $bookRequest->id ?? null }}" readonly>
             <option selected disabled>Select here...</option>
             @forelse ($books as $book)
                 <option value="{{ $book->id }}" {{ $bookRequest->id && $bookRequest->book_id == $book->id ? 'selected' : null }} >{{ $book->title }}</option>

@@ -16,8 +16,7 @@
                     <div class="card-header">
                         <strong>Book Requests</strong>
                         <div class="float-right d-inline-flex">
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalBookRequest"><i class="fas fa-fw fa-book"></i> Create Request</button>
-                            @include('borrower.book-requests.book-request-modal')
+                            <a href="{{ route('borrower.book-requests-create') }}" class="btn btn-primary btn-sm"><i class="fas fa-fw fa-book"></i> Create Request</a>
                         </div>
                     </div>
         
@@ -39,8 +38,8 @@
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>
-                                            <a href="#" data-toggle="modal" data-target="#modalBookRequest{{ $bookRequest->id }}">{{ $bookRequest->book->title }}</a>
-                                            @include('borrower.book-requests.book-request-modal')
+                                            <p>{{ $bookRequest->book->title }}</p>
+                                            {{-- @include('borrower.book-requests.book-request-modal') --}}
                                         </td>
                                         <td>{{ $bookRequest->book->author }}</td>
                                         <td>{{ $bookRequest->book->isbn }}</td>

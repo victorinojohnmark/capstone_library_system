@@ -126,5 +126,12 @@ class BorrowerController extends Controller
         return redirect()->route('borrower-index');
     }
 
+    public function destroy(User $borrower)
+    {
+        $borrower->delete();
+        session()->flash('success', $borrower->name . ' is deleted successfully.');
+        return redirect()->route('borrower-index');
+    }
+
     
 }

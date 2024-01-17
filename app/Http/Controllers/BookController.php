@@ -68,7 +68,11 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+
+        session()->flash('success', $book->title . ' deleted successfully.');
+
+        return redirect()->route('book-index');
     }
 
 }

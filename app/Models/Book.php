@@ -15,6 +15,16 @@ class Book extends Model
 
     protected $fillable = ['title', 'author', 'isbn', 'publisher', 'category', 'subject', 'year', 'quantity', 'condition' ,'remarks'];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        // Deleting event for the Book model
+        static::deleting(function ($book) {
+            $book->bookRequests()->delete();
+            $book->bookTransactions()->delete();
+        });
+    }
 
     public function bookRequests()
     {

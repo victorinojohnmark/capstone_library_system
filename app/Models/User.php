@@ -43,6 +43,17 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        // Deleting event for the Book model
+        static::deleting(function ($user) {
+            $user->bookRequests()->delete();
+            $user->bookTransactions()->delete();
+        });
+    }
+
     public function getNameAttribute()
     {
         return $this->lastname . ', ' . $this->firstname . ' ' . $this->middle_initial;
@@ -70,12 +81,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function section()
     {
-        return $this->belongsTo(Section::class);
+        return $this->belongsTo(Section::class)->withTrashed();
     }
 
     public function adviser()
     {
-        return $this->belongsTo(Adviser::class);
+        return $this->belongsTo(Adviser::class)->withTrashed();
     }
 
     public function bookRequests()

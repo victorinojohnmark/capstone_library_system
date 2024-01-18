@@ -17,12 +17,12 @@ class BookRequest extends Model
 
     public function book()
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(Book::class)->withTrashed();;
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'requested_by_id');
+        return $this->belongsTo(User::class, 'requested_by_id')->withTrashed();;
     }
 
     public function scopeRejected($query)

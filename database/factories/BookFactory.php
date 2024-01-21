@@ -20,7 +20,6 @@ class BookFactory extends Factory
             'title' => $this->faker->sentence,
             'author' => $this->faker->name,
             'isbn' => $this->faker->isbn13,
-            'publisher' => $this->faker->company,
             'category' => $this->faker->randomElement(['Books', 'Magazine', 'Journal']),
             'subject' => $this->faker->word,
             'year' => $this->faker->year,

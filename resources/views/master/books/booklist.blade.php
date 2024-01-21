@@ -13,8 +13,8 @@
         <div class="card">
             <div class="card-header">
                 <div class="float-right d-inline-flex">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalBook"><i class="fas fa-fw fa-book"></i> Add Book</button>
-                    @include('master.books.bookmodal')
+                    <a href="{{ route('book-create') }}"><i class="fas fa-fw fa-book"></i> Add Book</a>
+                    {{-- @include('master.books.bookmodal') --}}
                 </div>
             </div>
 
@@ -41,13 +41,13 @@
                             <tr data-toggle="tooltip" data-placement="top" title="{{ $book->remarks }}">
                                 <td><strong>{{ $loop->index + 1 }}</strong></td>
                                 <td>
-                                    <strong><a href="#" data-toggle="modal" data-target="#modalBook{{ $book->id }}">{{ $book->title }}</a></strong>
-                                    @include('master.books.bookmodal')
+                                    <strong><a href="{{ route('book-show', ['book' => $book->id]) }}">{{ $book->title }}</a></strong>
+                                    {{-- @include('master.books.bookmodal') --}}
                                 </td>
                                 {{-- <td>{{ $book->author }}</td> --}}
                                 <td>{{ $book->isbn }}</td>
                                 <td>{{ $book->category }}</td>
-                                <td>{{ $book->subject }}</td>
+                                <td>{{ $book->subject ?? '-' }}</td>
                                 <td>{{ $book->year }}</td>
                                 <td>{{ $book->quantity }}</td>
                                 <td>{{ $book->condition }}</td>

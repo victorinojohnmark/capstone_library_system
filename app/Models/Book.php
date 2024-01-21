@@ -13,7 +13,7 @@ class Book extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['title', 'author', 'isbn', 'publisher', 'category', 'subject', 'year', 'quantity', 'condition' ,'remarks'];
+    protected $fillable = ['title', 'author', 'isbn', 'category', 'subject', 'year', 'quantity', 'condition' ,'remarks'];
 
     public static function boot()
     {

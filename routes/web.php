@@ -53,6 +53,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
         Route::get('/books', [BookController::class, 'index'])->name('book-index');
+        Route::get('/books/create', [BookController::class, 'create'])->name('book-create');
+        Route::get('/books/{book}', [BookController::class, 'show'])->name('book-show');
         Route::post('/books', [BookController::class, 'store'])->name('book-store');
         Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('book-delete');
         Route::post('/books/{book}', [BookController::class, 'update'])->name('book-update');

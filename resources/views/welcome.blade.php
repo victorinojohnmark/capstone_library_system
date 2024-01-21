@@ -48,7 +48,6 @@
                                             <th scope="col">Title</th>
                                             <th scope="col">Author</th>
                                             <th scope="col">ISBN</th>
-                                            <th scope="col">Publisher</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -58,7 +57,6 @@
                                                 <td>{{ $book->title }}</td>
                                                 <td>{{ $book->author }}</td>
                                                 <td>{{ $book->isbn }}</td>
-                                                <td>{{ $book->publisher }}</td>
                                             </tr>
                                         @empty
                                         @endforelse

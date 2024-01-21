@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->string('category', 50)->after('publisher');
+            $table->string('category', 50)->after('isbn');
             $table->string('subject', 50)->after('category');
             $table->year('year', 50)->after('subject');
             $table->integer('quantity')->after('year');

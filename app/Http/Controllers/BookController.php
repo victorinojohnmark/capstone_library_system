@@ -13,6 +13,23 @@ class BookController extends Controller
         return view('master.books.booklist', [
             'book' => new Book(),
             'books' => Book::orderBy('title')->get(),
+            
+        ]);
+    }
+
+    public function show(Request $request, Book $book)
+    {
+        return view('master.books.bookcreate', [
+            'book' => $book,
+            'categories' => Helper::getDropDownJson('book_category.json'),
+            'conditions' => Helper::getDropDownJson('book_condition.json'),
+        ]);
+    }
+
+    public function create(Request $request)
+    {
+        return view('master.books.bookcreate', [
+            'book' => new Book(),
             'categories' => Helper::getDropDownJson('book_category.json'),
             'conditions' => Helper::getDropDownJson('book_condition.json'),
         ]);
@@ -24,14 +41,17 @@ class BookController extends Controller
             'title' => 'required|unique:books,title',
             'author' => 'required',
             'isbn' => 'required|unique:books,isbn',
-            'publisher' => 'required',
             'category' =>'required',
-            'subject' => 'required',
+            'subject' => 'nullable',
             'year' => 'required|numeric|between:1900,' . date('Y'),
             'quantity' =>'required|integer',
             'condition' =>'required',
             'remarks' => 'nullable'
         ]);
+
+        if($data['category'] != 'Books') {
+            $data['subject'] = null;
+        }
 
         $book = Book::create($data);
 
@@ -49,14 +69,17 @@ class BookController extends Controller
             'title' => 'required|unique:books,title,'.$book->id.',id',
             'author' => 'required',
             'isbn' => 'required|unique:books,isbn,' . $book->id . ',id',
-            'publisher' => 'required',
             'category' =>'required',
-            'subject' => 'required',
+            'subject' => 'nullable',
             'year' => 'required|numeric|between:1900,' . date('Y'),
             'quantity' =>'required|integer',
             'condition' =>'required',
             'remarks' => 'nullable'
         ]);
+
+        if($data['category'] != 'Books') {
+            $data['subject'] = null;
+        }
 
         $book->fill($data);
         $book->save();

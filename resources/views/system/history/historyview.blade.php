@@ -25,7 +25,6 @@
                             <th scope="col">Title</th>
                             <th scope="col">Author</th>
                             <th scope="col">ISBN</th>
-                            <th scope="col">Publisher</th>
                             <th scope="col">Status</th>
 
                         </tr>
@@ -40,7 +39,6 @@
                                 </td>
                                 <td>{{ $book->author }}</td>
                                 <td>{{ $book->isbn }}</td>
-                                <td>{{ $book->publisher }}</td>
                                 <td>
                                     {{ $book->status }}
                                 </td>

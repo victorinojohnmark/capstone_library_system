@@ -15,7 +15,7 @@
                 <p>You are lending <strong>{{ $bookWithReservation->title }}</strong> <br>to <strong>{{ $bookWithReservation->latestApprovedBookRequest->user->name }}</strong>, please confirm.</p>
                 <div class="form-group col-md-6">
                     <label for="due_date{{ $bookWithReservation->id ?? null }}">Due Date</label>
-                    <input type="date" name="due_date" class="form-control" id="due_date{{ $bookWithReservation->id ?? null }}" required>
+                    <input type="date" name="due_date" class="form-control" id="due_date{{ $bookWithReservation->id ?? null }}" min="<?= date('Y-m-d'); ?>" required>
                 </div>
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-primary">Submit</button>

@@ -37,11 +37,6 @@
                 <label for="firstName">First Name</label>
                 <input type="text" name="firstname" class="form-control" id="firstName" value="{{ old('firstname') }}" required>
             </div>
-        
-            {{-- <div class="form-group col-md-4">
-                <label for="middleInitial">Middle Initial</label>
-                <input type="text" name="middle_initial" class="form-control" id="middleInitial" value="{{ old('middle_initial') }}">
-            </div> --}}
 
             <div class="form-group col-md-4 ">
                 <label for="type">Type</label>

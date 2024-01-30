@@ -7,6 +7,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\BorrowerController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\AdviserController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookRequestController;
 use App\Http\Controllers\BookTransactionController;
@@ -50,6 +51,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/advisers', [AdviserController::class, 'store'])->name('adviser-store');
         Route::post('/advisers/{adviser}', [AdviserController::class, 'update'])->name('adviser-update');
         Route::delete('/advisers/{adviser}', [AdviserController::class, 'destroy'])->name('adviser-delete');
+
+        Route::get('/departments', [DepartmentController::class, 'index'])->name('department-index');
+        Route::post('/departments', [DepartmentController::class, 'store'])->name('department-store');
+        Route::post('/departments/{department}', [DepartmentController::class, 'update'])->name('department-update');
+        Route::delete('/departments/{department}', [DepartmentController::class, 'destroy'])->name('department-delete');
 
 
         Route::get('/books', [BookController::class, 'index'])->name('book-index');

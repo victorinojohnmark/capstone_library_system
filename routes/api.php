@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\AdviserController;
+use App\Http\Controllers\GradeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/sections', [SectionController::class, 'fetchSection']);
 Route::get('/advisers', [AdviserController::class, 'fetchAdviser']);
+Route::get('/grades', [GradeController::class, 'fetchGrade']);

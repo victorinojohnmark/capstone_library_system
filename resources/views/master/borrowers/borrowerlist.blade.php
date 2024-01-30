@@ -23,11 +23,13 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
+                            <th scope="col">Type</th>
                             <th scope="col">LRN</th>
                             <th scope="col">Grade</th>
                             <th scope="col">Section</th>
                             <th scope="col">Adviser</th>
-                            <th scope="col">Type</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Employee No</th>
                             <th scope="col">Option</th>
                         </tr>
                     </thead>
@@ -38,11 +40,13 @@
                                 <td>
                                     <strong><a href="{{ route('borrower-show', ['borrower' => $borrower->id]) }}">{{ $borrower->name }}</a></strong>
                                 </td>
+                                <td>{{ $borrower->type }}</td>
                                 <td>{{ $borrower->lrn ?? '-' }}</td>
                                 <td>{{ $borrower->grade ?? '-' }}</td>
                                 <td>{{ $borrower->section_id ? $borrower->section->section_name : '-' }}</td>
                                 <td>{{ $borrower->adviser_id ? $borrower->adviser->name : '-' }}</td>
-                                <td>{{ $borrower->type }}</td>
+                                <td>{{ $borrower->department ? $borrower->department->department_name : '-' }}</td>
+                                <td>{{ $borrower->employee_no ?? '-' }}</td>
                                 <td>
                                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#borrowerModal{{ $borrower->id }}"><i class="fas fa-trash"></i></button>
                                     <div class="modal fade" id="borrowerModal{{ $borrower->id ?? null }}" tabindex="-1" aria-hidden="true">

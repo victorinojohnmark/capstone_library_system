@@ -12,7 +12,7 @@
                 @csrf
                 <div class="col-md-4">
                     <div class="form-group p-3">
-                        <img src="{{ $user->profile_image_url ?? '/img/img-placeholder.jpg' }}" class="img-fluid" id="profilePicture" alt="">
+                        <img src="{{ $user->profile_image_url ?? '/img/user.jpg' }}" class="img-fluid" id="profilePicture" alt="">
                         <label for="profile_picture">Profile Picture</label>
                         <input type="file" name="image_filename" class="form-control-file" id="profile_picture" onchange="handleImageChange(this, 'profilePicture')">
                     </div>

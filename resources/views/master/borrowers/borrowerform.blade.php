@@ -3,7 +3,7 @@
     <input type="hidden" name="id" value="{{ $borrower->id ?? null }}">
     <div class="col-md-2">
         <div class="form-group p-3">
-            <img src="{{ $borrower->id ? $borrower->profileImageUrl : '/img/img-placeholder.jpg' }}" class="img-fluid" id="profilePicture" alt="">
+            <img src="{{ $borrower->id ? $borrower->profileImageUrl : '/img/user.jpg' }}" class="img-fluid" id="profilePicture" alt="">
             <label for="profile_picture">Profile Picture</label>
             <input type="file" name="image_filename" class="form-control-file" id="profile_picture" onchange="handleImageChange(this, 'profilePicture')">
         </div>
@@ -117,7 +117,7 @@
     @csrf
     <div class="col-md-4">
         <div class="form-group p-3">
-            <img src="{{ $borrower->id ? $borrower->profileImageUrl : '/img/img-placeholder.jpg' }}" class="img-fluid" id="profilePicture{{ $borrower->id ?? null }}" alt="">
+            <img src="{{ $borrower->id ? $borrower->profileImageUrl : '/img/user.jpg' }}" class="img-fluid" id="profilePicture{{ $borrower->id ?? null }}" alt="">
             <label for="profile_picture{{ $borrower->id ?? null }}">Profile Picture</label>
             <input type="file" name="image_filename" class="form-control-file" id="profile_picture{{ $borrower->id ?? null }}" onchange="handleImageChange(this, 'profilePicture{{ $borrower->id ?? null }}')">
         </div>

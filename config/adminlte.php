@@ -336,6 +336,10 @@ return [
                     'text' => 'Advisors',
                     'url'  => '/admin/advisers',
                 ],
+                [
+                    'text' => 'Departments',
+                    'url'  => '/admin/departments',
+                ],
                 
             ],
         ],

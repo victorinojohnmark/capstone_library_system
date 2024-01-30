@@ -16,6 +16,7 @@ use App\System\Helper;
 
 use App\Models\Section;
 use App\Models\Adviser;
+use App\Models\Department;
 
 class RegisterController extends Controller
 {
@@ -61,12 +62,15 @@ class RegisterController extends Controller
             // 'middle_initial' => ['nullable'],
             'email' => ['required', 'unique:users','email'],
             'password' => ['required','confirmed','min:6'],
-            'lrn' => ['required','min:11',"max:11", 'unique:users,lrn'],
-            'grade_no' => ['sometimes','integer'],
-            'section_id' => ['nullable'],
-            'adviser_id' => ['nullable'],
             'type' => ['required'],
-            'image_filename' => ['required','mimes:jpg,jpeg,png','max:5120'],
+            'lrn' => ['required_if:type,Student','min:12',"max:12", 'unique:users,lrn'],
+            'grade_no' => ['required_if:type,Student','integer'],
+            'section_id' => ['required_if:type,Student'],
+            'adviser_id' => ['required_if:type,Student'],
+            'department_id' => ['required_if:type,Faculty'],
+            'employee_no' => ['required_if:type,Faculty'],
+            
+            // 'image_filename' => ['required','mimes:jpg,jpeg,png','max:5120'],
         ]);
     }
 
@@ -103,11 +107,13 @@ class RegisterController extends Controller
             // 'middle_initial' => $data['middle_initial'] ?? null,
             'email' => $data['email'],
             'password' => $data['password'],
-            'lrn' => $data['lrn'],
+            'lrn' => $data['lrn'] ?? null,
             'grade_no' => $data['grade_no'] ?? null,
             'section_id' => $data['section_id'] ?? null,
             'adviser_id' => $data['adviser_id'] ?? null,
-            'type' => $data['type']
+            'type' => $data['type'],
+            'department_id' => $data['department_id'] ?? null,
+            'employee_no' => $data['employee_no'] ?? null
         ]);
 
         if($request->hasFile('image_filename')) {
@@ -133,6 +139,7 @@ class RegisterController extends Controller
             'sections' => Section::orderBy('section_name')->get(),
             'advisers' => Adviser::latest()->get(),
             'types' => Helper::getDropDownJson('user_types.json'),
+            'departments' => Department::orderBy('department_name')->get(),
         ]);
     }
 }

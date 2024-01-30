@@ -6,11 +6,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="d-flex justify-content-center mb-5 bg-white border shadow-sm p-3">
+                <div class="d-flex justify-content-center mb-5 bg-info border shadow-sm p-3">
                     <img src="/img/ashi-library-logo.png" alt="" class="img-fluid mx-3" style="width: 100px; height: 100px;">
                     <div class="text-center">
-                        <h1 class="mb-0 mt-3 font-weight-bolder text-secondary">Amaya School of Home Industries</h1>
-                        <p>Library Management System</p>
+                        <h1 class="mb-0 mt-3 font-weight-bolder text-white">Amaya School of Home Industries</h1>
+                        <p><strong>Web-based Library System</strong></p>
                     </div>
                     <img src="/img/ashi-logo.png" alt="" class="img-fluid mx-3" style="width: 100px; height: 100px;">
                 </div>
@@ -18,14 +18,22 @@
 
             <div class="col-md-4">
 
-                {{-- Calendar Widget --}}
-                <div class="calendar card rounded-0 p-3 bg-white shadow-sm mb-3">
+                <div class="calendar card rounded-0 p-3 text-dark bg-light shadow-sm mb-3">
                     <div id="calendar-basic"></div>
                 </div>
                 
 
                 <x-announcement-widget :announcements="$announcements" />
 
+                <div class="card rounded-0 shadow-sm mb-3 text-left" id="accordionAnnouncement">
+                    <div class="card-header px-4">
+                        <h6 class="mb-0 font-weight-bold text-danger">Penalty Notice</h6>
+                    </div>
+                    <div class="card-body p-3">
+                        <small><strong>Overdue books are subject to a Php 50.00 penalty.</strong></small>    
+                    </div>   
+                    
+                </div>
             </div>
 
             <div class="col-md-8">
@@ -33,7 +41,7 @@
                     @include('layouts.message')
                     <div class="card">
                         <div class="card-header">
-                            <h6 class="mb-0"><strong>Book List</strong></h6>
+                            <h6 class="mb-0 text-info"><strong>Book List</strong></h6>
                             <div class="float-right d-inline-flex">
                                 
                             </div>

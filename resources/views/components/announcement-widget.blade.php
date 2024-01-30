@@ -1,6 +1,6 @@
 <div class="card rounded-0 shadow-sm mb-3 text-left" id="accordionAnnouncement">
     <div class="card-header px-4">
-        <h6 class="mb-0 font-weight-bold">Announcements</h6>
+        <h6 class="mb-0 font-weight-bold text-info">Announcements</h6>
     </div>
     @forelse ($announcements as $announcement)
         <div class="card-header px-4 text-left" id="headingAnnouncement{{ $announcement->id }}">
@@ -33,7 +33,7 @@
         </div>   --}}
             
     @empty
-        <p>No posted Announcements.</p>
+        <p class="px-3 pt-3">No posted Announcements.</p>
     @endforelse    
     
 </div>

@@ -12,7 +12,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Book</th>
                     <th scope="col">Borrower</th>
-                    <th scope="col">ISBN</th>
+                    <th style="width: 100px;">ISBN</th>
                     <th scope="col">Date Borrowed</th>
                     <th scope="col">Due Date</th>
                     <th scope="col">Option</th>
@@ -30,6 +30,7 @@
                         <td>{{ $borrowedBook->latestBorrowedTransaction->due_date }} 
                             @if ($borrowedBook->latestBorrowedTransaction->is_overdue)
                             <span class="badge badge-danger inline">Overdue</span>
+                            <span class="badge badge-danger inline">50 pesos fine</span>
                             @endif
                         </td>
                         <td>

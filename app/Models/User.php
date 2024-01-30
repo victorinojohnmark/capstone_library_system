@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\Section;
 use App\Models\Adviser;
+use App\Models\Department;
 use App\Models\BookTransaction;
 
 
@@ -30,6 +31,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'section_id',
         'adviser_id',
         'type',
+        'employee_no',
+        'department_id',
         'image_filename',
     ];
 
@@ -87,6 +90,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function adviser()
     {
         return $this->belongsTo(Adviser::class)->withTrashed();
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class)->withTrashed();
     }
 
     public function bookRequests()

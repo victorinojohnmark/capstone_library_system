@@ -40,15 +40,20 @@
     // Function to handle category change
     function handleCategoryChange(selectElement) {
         var subjectInput = document.getElementById('subject');
+        var isbnInput = document.getElementById('isbn');
 
         // Check if the selected category is 'Book'
         if (selectElement.value === 'Books') {
             // Enable the subject input
             subjectInput.removeAttribute('disabled');
+            isbnInput.removeAttribute('disabled');
         } else {
             // Disable the subject input and reset its value
             subjectInput.setAttribute('disabled', 'disabled');
             subjectInput.value = '';
+
+            isbnInput.setAttribute('disabled', 'disabled');
+            isbnInput.value = '';
         }
     }
 

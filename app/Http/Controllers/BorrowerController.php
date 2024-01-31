@@ -9,6 +9,7 @@ use App\System\Helper;
 use App\Models\User;
 use App\Models\Section;
 use App\Models\Adviser;
+use App\Models\Department;
 
 class BorrowerController extends Controller
 {
@@ -24,6 +25,7 @@ class BorrowerController extends Controller
             'sections' => Section::orderBy('section_name')->get(),
             'advisers' => Adviser::latest()->get(),
             'types' => Helper::getDropDownJson('user_types.json'),
+            
 
         ]);
     }
@@ -37,6 +39,7 @@ class BorrowerController extends Controller
             'sections' => Section::orderBy('section_name')->get(),
             'advisers' => Adviser::latest()->get(),
             'types' => Helper::getDropDownJson('user_types.json'),
+            'departments' => Department::orderBy('department_name')->get(),
         ]);
     }
 
@@ -48,6 +51,7 @@ class BorrowerController extends Controller
             'sections' => Section::orderBy('section_name')->get(),
             'advisers' => Adviser::latest()->get(),
             'types' => Helper::getDropDownJson('user_types.json'),
+            'departments' => Department::orderBy('department_name')->get(),
         ]);
     }
 
@@ -58,12 +62,14 @@ class BorrowerController extends Controller
             'firstname' => 'required',
             'email' => 'required|unique:users,email',
             'password' => 'required|confirmed|min:6',
-            'lrn' => 'sometimes|digits:11|unique:users,lrn',
-            'grade' => 'sometimes|integer',
-            'section_id' => 'sometimes|integer',
-            'adviser_id' => 'sometimes|integer',
             'type' => 'required',
-            'image_filename' => 'required|mimes:jpg,jpeg,png|max:5120'
+            'lrn' => 'required_if:type,Student|min:12|max:12|unique:users,lrn',
+            'grade_no' => 'required_if:type,Student|integer',
+            'section_id' => 'required_if:type,Student',
+            'adviser_id' => 'required_if:type,Student',
+            'department_id' => 'required_if:type,Faculty',
+            'employee_no' => 'required_if:type,Faculty',
+            'image_filename' => 'sometimes|mimes:jpg,jpeg,png|max:5120'
         ]);
 
         //remove image_filename 
@@ -96,11 +102,15 @@ class BorrowerController extends Controller
             'lastname' => 'required',
             'firstname' => 'required',
             'type' => 'required|in:Student,Faculty,Staff',
-            'lrn' => 'sometimes|digits:11|unique:users,lrn,'. $borrower->id,
+            'lrn' => 'required_if:type,Student|min:12|max:12|unique:users,lrn,'. $borrower->id,
             'grade_no' => 'required_if:type,Student|integer',
-            'section_id' => 'required_if:type,Student|integer',
-            'adviser_id' => 'required_if:type,Student|integer',
+            'section_id' => 'required_if:type,Student',
+            'adviser_id' => 'required_if:type,Student',
+            'department_id' => 'required_if:type,Faculty',
+            'employee_no' => 'required_if:type,Faculty',
             'image_filename' => 'sometimes|mimes:jpg,jpeg,png|max:5120'
+
+            
         ]);
 
         //remove image_filename 

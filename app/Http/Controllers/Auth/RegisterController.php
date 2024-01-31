@@ -70,7 +70,7 @@ class RegisterController extends Controller
             'department_id' => ['required_if:type,Faculty'],
             'employee_no' => ['required_if:type,Faculty'],
             
-            // 'image_filename' => ['required','mimes:jpg,jpeg,png','max:5120'],
+            'image_filename' => ['sometimes','mimes:jpg,jpeg,png','max:5120'],
         ]);
     }
 

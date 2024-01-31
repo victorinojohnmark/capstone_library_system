@@ -39,11 +39,11 @@ class BookController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|unique:books,title',
-            'author' => 'required',
+            'author' => 'nullable',
             'isbn' => 'required|unique:books,isbn',
             'category' =>'required',
             'subject' => 'nullable',
-            'year' => 'required|numeric|between:1900,' . date('Y'),
+            'year' => 'required_if:category,Books|numeric|between:1900,' . date('Y'),
             'quantity' =>'required|integer',
             'condition' =>'required',
             'remarks' => 'nullable'
@@ -67,9 +67,9 @@ class BookController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|unique:books,title,'.$book->id.',id',
-            'author' => 'required',
-            'isbn' => 'required|unique:books,isbn,' . $book->id . ',id',
+            'author' => 'nullable',
             'category' =>'required',
+            'isbn' => 'required_if:category,Books|unique:books,isbn,' . $book->id . ',id',
             'subject' => 'nullable',
             'year' => 'required|numeric|between:1900,' . date('Y'),
             'quantity' =>'required|integer',

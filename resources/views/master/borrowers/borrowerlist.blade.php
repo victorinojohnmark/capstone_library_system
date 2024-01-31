@@ -42,7 +42,7 @@
                                 </td>
                                 <td>{{ $borrower->type }}</td>
                                 <td>{{ $borrower->lrn ?? '-' }}</td>
-                                <td>{{ $borrower->grade ?? '-' }}</td>
+                                <td>{{ $borrower->grade_no ?? '-' }}</td>
                                 <td>{{ $borrower->section_id ? $borrower->section->section_name : '-' }}</td>
                                 <td>{{ $borrower->adviser_id ? $borrower->adviser->name : '-' }}</td>
                                 <td>{{ $borrower->department ? $borrower->department->department_name : '-' }}</td>

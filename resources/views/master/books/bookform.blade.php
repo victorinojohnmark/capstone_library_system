@@ -8,12 +8,12 @@
 
         <div class="form-group col-md-12">
             <label for="author">Author</label>
-            <input type="text" name="author" class="form-control" id="author" value="{{ old('author', $book->author ?? null) }}" required>
+            <input type="text" name="author" class="form-control" id="author" value="{{ old('author', $book->author ?? null) }}">
         </div>
 
         <div class="form-group col-md-12">
             <label for="isbn">ISBN</label>
-            <input type="text" name="isbn" class="form-control" id="isbn" value="{{ old('isbn', $book->isbn ?? null) }}" required>
+            <input type="text" name="isbn" class="form-control" id="isbn" value="{{ old('isbn', $book->isbn ?? null) }}">
         </div>
 
         <div class="form-group col-md-12">

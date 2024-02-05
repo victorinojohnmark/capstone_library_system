@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', env('APP_NAME', 'LMS') . ' | ' .  'Adviser List')
+@section('title', env('APP_NAME', 'LMS') . ' | ' .  'Department List')
 
 @section('content_header')
-    <h2 class="pl-1">Adviser List</h2>
+    <h2 class="pl-1">Department List</h2>
 @stop
 
 @section('content')

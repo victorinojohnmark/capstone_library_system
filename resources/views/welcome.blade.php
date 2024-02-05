@@ -86,6 +86,11 @@
 @section('css')
     <link rel="stylesheet" href="/vendor/datatables/datatables.min.css">
     <link rel="stylesheet" href="/vendor/zabuto-calendar/zabuto_calendar.min.css">
+    <style>
+        .navbar-brand {
+            display: none !important;
+        }
+    </style>
 @stop
 
 @section('js')

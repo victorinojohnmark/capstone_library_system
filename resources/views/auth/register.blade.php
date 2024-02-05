@@ -438,5 +438,14 @@
             // Update the input value
             input.value = limitedValue;
         }
+
+        var targetElement = document.querySelector('.register-logo > a > :nth-child(2)');
+  
+        // Change the innerHTML
+        if (targetElement) {
+        targetElement.innerHTML = 'Web-based Library System of Amaya School of Home Industries';
+        }
     </script>
+
+    
 @stop

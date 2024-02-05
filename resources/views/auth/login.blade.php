@@ -111,7 +111,6 @@
     // Get the <b> element (second child) under the login-logo class div
     var targetElement = document.querySelector('.login-logo > a > :nth-child(2)');
   
-    console.log('hello')
     // Change the innerHTML
     if (targetElement) {
       targetElement.innerHTML = 'Web-based Library System of Amaya School of Home Industries';

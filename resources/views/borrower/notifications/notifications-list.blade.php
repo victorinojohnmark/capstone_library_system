@@ -63,6 +63,7 @@
         $(document).ready(function () {
             $('#book-requests-table').DataTable({
                 "order": [],
+                "searching": false
             });
 
         });

@@ -12,7 +12,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Book</th>
                     <th scope="col">Author</th>
-                    <th scope="col">ISBN</th>
+                    {{-- <th scope="col">ISBN</th> --}}
                     <th scope="col">Option</th>
 
                 </tr>
@@ -23,7 +23,7 @@
                         <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $availableBook->title }}</td>
                         <td>{{ $availableBook->author }}</td>
-                        <td>{{ $availableBook->isbn }}</td>
+                        {{-- <td>{{ $availableBook->isbn }}</td> --}}
                         <td>
                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#lendBook{{ $availableBook->id ?? null }}">
                                 <i class="far fa-thumbs-up"></i> Lend Book

@@ -27,7 +27,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Book</th>
                                     <th scope="col">Author</th>
-                                    <th scope="col">ISBN</th>
+                                    {{-- <th scope="col">ISBN</th> --}}
                                     <th scope="col">Option</th>
                                 </tr>
                             </thead>
@@ -37,7 +37,7 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $book->title }}</td>
                                         <td>{{ $book->author }}</td>
-                                        <td>{{ $book->isbn }}</td>
+                                        {{-- <td>{{ $book->isbn }}</td> --}}
                                         <td>
                                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalBookRequest{{ $book->id ?? null }}">Request</a>
                                             <div class="modal fade" id="modalBookRequest{{ $book->id ?? null }}" tabindex="-1" aria-hidden="true">

@@ -12,7 +12,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Book</th>
                     <th scope="col">Author</th>
-                    <th scope="col">ISBN</th>
+                    {{-- <th scope="col">ISBN</th> --}}
                     <th scope="col">Reservation Date</th>
                     <th scope="col">Option</th>
 
@@ -24,7 +24,7 @@
                         <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $bookWithReservation->title }}</td>
                         <td>{{ $bookWithReservation->author }}</td>
-                        <td>{{ $bookWithReservation->isbn }}</td>
+                        {{-- <td>{{ $bookWithReservation->isbn }}</td> --}}
                         <td>{{ $bookWithReservation->bookRequest->approved_at }}</td>
                         <td>
                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#lendBook{{ $bookWithReservation->id ?? null }}">

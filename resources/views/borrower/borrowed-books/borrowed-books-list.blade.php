@@ -27,7 +27,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Book</th>
                                     <th scope="col">Author</th>
-                                    <th scope="col">ISBN</th>
+                                    {{-- <th scope="col">ISBN</th> --}}
                                     <th scope="col">Date Borrowed</th>
                                     <th scope="col">Due Date</th>
                                     {{-- <th scope="col">Status</th> --}}
@@ -45,7 +45,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $transaction->book->author }}</td>
-                                        <td>{{ $transaction->book->isbn }}</td>
+                                        {{-- <td>{{ $transaction->book->isbn }}</td> --}}
                                         <td>{{  $transaction->borrowed_at }}</td>
                                         <td>{{  $transaction->due_date }}</td>
                                         {{-- <td>{{ $transaction->status }}</td> --}}

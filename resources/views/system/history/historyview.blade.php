@@ -24,7 +24,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Title</th>
                             <th scope="col">Author</th>
-                            <th scope="col">ISBN</th>
+                            {{-- <th scope="col">ISBN</th> --}}
                             <th scope="col">Status</th>
 
                         </tr>
@@ -38,7 +38,7 @@
                                     @include('system.history.historymodal')
                                 </td>
                                 <td>{{ $book->author }}</td>
-                                <td>{{ $book->isbn }}</td>
+                                {{-- <td>{{ $book->isbn }}</td> --}}
                                 <td>
                                     {{ $book->status }}
                                 </td>

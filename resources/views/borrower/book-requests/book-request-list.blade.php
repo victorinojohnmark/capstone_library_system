@@ -27,7 +27,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Book</th>
                                     <th scope="col">Author</th>
-                                    <th scope="col">ISBN</th>
+                                    {{-- <th scope="col">ISBN</th> --}}
                                     <th scope="col">Date Request</th>
                                     <th scope="col">Status</th>
         
@@ -42,7 +42,7 @@
                                             {{-- @include('borrower.book-requests.book-request-modal') --}}
                                         </td>
                                         <td>{{ $bookRequest->book->author }}</td>
-                                        <td>{{ $bookRequest->book->isbn }}</td>
+                                        {{-- <td>{{ $bookRequest->book->isbn }}</td> --}}
                                         <td>{{  $bookRequest->requested_at }}</td>
                                         <td>{{ $bookRequest->status }}</td>
                                     </tr>

@@ -12,7 +12,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Book</th>
                     <th scope="col">Borrower</th>
-                    <th style="width: 100px;">ISBN</th>
+                    {{-- <th style="width: 100px;">ISBN</th> --}}
                     <th scope="col">Date Borrowed</th>
                     <th scope="col">Due Date</th>
                     <th scope="col">Option</th>
@@ -25,7 +25,7 @@
                         <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $borrowedBook->title }}</td>
                         <td>{{ $borrowedBook->latestBorrowedTransaction->user->name }}</td>
-                        <td>{{ $borrowedBook->isbn }}</td>
+                        {{-- <td>{{ $borrowedBook->isbn }}</td> --}}
                         <td>{{ $borrowedBook->latestBorrowedTransaction->borrowed_at }}</td>
                         <td>{{ $borrowedBook->latestBorrowedTransaction->due_date }} 
                             @if ($borrowedBook->latestBorrowedTransaction->is_overdue)

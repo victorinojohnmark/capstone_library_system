@@ -25,7 +25,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Title</th>
                             {{-- <th scope="col">Author</th> --}}
-                            <th scope="col">ISBN</th>
+                            {{-- <th scope="col">ISBN</th> --}}
                             <th scope="col">Category</th>
                             <th scope="col">Subject</th>
                             <th scope="col">Year</th>
@@ -45,7 +45,7 @@
                                     {{-- @include('master.books.bookmodal') --}}
                                 </td>
                                 {{-- <td>{{ $book->author }}</td> --}}
-                                <td>{{ $book->isbn }}</td>
+                                {{-- <td>{{ $book->isbn }}</td> --}}
                                 <td>{{ $book->category }}</td>
                                 <td>{{ $book->subject ?? '-' }}</td>
                                 <td>{{ $book->year }}</td>

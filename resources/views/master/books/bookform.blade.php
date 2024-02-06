@@ -1,6 +1,6 @@
 <form class="form-row" action="/admin/books{{ $book->id ? '/' . $book->id : null }}" method="POST" enctype="multipart/form-data">
     @csrf
-    <div class="row col-md-6">
+    <div class="col-md-6">
         <div class="form-group col-md-12">
             <label for="title">Title</label>
             <input type="text" name="title" class="form-control" id="title" value="{{ old('title', $book->title ?? null) }}" required>
@@ -11,10 +11,10 @@
             <input type="text" name="author" class="form-control" id="author" value="{{ old('author', $book->author ?? null) }}">
         </div>
 
-        <div class="form-group col-md-12">
+        {{-- <div class="form-group col-md-12">
             <label for="isbn">ISBN</label>
             <input type="text" name="isbn" class="form-control" id="isbn" value="{{ old('isbn', $book->isbn ?? null) }}">
-        </div>
+        </div> --}}
 
         <div class="form-group col-md-12">
             <label for="category">Category</label>
@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    <div class="row col-md-6">
+    <div class="col-md-6">
         <div class="form-group col-md-12">
             <label for="year">Year</label>
             <input type="year" name="year" class="form-control" id="year" value="{{ old('year', $book->year ?? null) }}" required>
@@ -55,10 +55,11 @@
             </select>
         </div>
     
-        <div class="form-group col-md-12">
-            <label for="remarks">Remarks</label>
-            <textarea name="remarks" class="form-control" id="remarks" cols="30" rows="10">{{ old('remarks', $book->remarks ?? null) }}</textarea>
-        </div>
+        
+    </div>
+    <div class="form-group col-md-12">
+        <label for="remarks">Remarks</label>
+        <textarea name="remarks" class="form-control" id="remarks" cols="30" rows="3">{{ old('remarks', $book->remarks ?? null) }}</textarea>
     </div>
 
     

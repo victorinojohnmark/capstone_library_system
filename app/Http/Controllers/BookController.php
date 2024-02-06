@@ -40,7 +40,7 @@ class BookController extends Controller
         $data = $request->validate([
             'title' => 'required|unique:books,title',
             'author' => 'nullable',
-            'isbn' => 'required_if:category,Books|unique:books,isbn',
+            // 'isbn' => 'required_if:category,Books|unique:books,isbn',
             'category' =>'required',
             'subject' => 'nullable',
             'year' => 'required|numeric|between:1900,' . date('Y'),
@@ -69,7 +69,7 @@ class BookController extends Controller
             'title' => 'required|unique:books,title,'.$book->id.',id',
             'author' => 'nullable',
             'category' =>'required',
-            'isbn' => 'required_if:category,Books|unique:books,isbn,' . $book->id . ',id',
+            // 'isbn' => 'required_if:category,Books|unique:books,isbn,' . $book->id . ',id',
             'subject' => 'nullable',
             'year' => 'required|numeric|between:1900,' . date('Y'),
             'quantity' =>'required|integer',

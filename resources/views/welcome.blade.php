@@ -55,7 +55,7 @@
                                             <th scope="col">#</th>
                                             <th scope="col">Title</th>
                                             <th scope="col">Author</th>
-                                            <th scope="col">ISBN</th>
+                                            {{-- <th scope="col">ISBN</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -64,7 +64,7 @@
                                                 <td><strong>{{ $loop->index + 1 }}</strong></td>
                                                 <td>{{ $book->title }}</td>
                                                 <td>{{ $book->author }}</td>
-                                                <td>{{ $book->isbn }}</td>
+                                                {{-- <td>{{ $book->isbn }}</td> --}}
                                             </tr>
                                         @empty
                                         @endforelse

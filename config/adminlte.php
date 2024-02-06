@@ -375,11 +375,11 @@ return [
             'icon'    => 'fas fa-fw fa-database',
             'url'     => '/admin/db-backup'
         ],
-        [
-            'text'    => 'User Setting',
-            'icon'    => 'fas fa-fw fa-user',
-            'url'     => '/admin/user-profile'
-        ],
+        // [
+        //     'text'    => 'User Setting',
+        //     'icon'    => 'fas fa-fw fa-user',
+        //     'url'     => '/admin/user-profile'
+        // ],
     ],
 
     /*

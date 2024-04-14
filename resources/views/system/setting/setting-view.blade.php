@@ -27,8 +27,8 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="vision">Vission</label>
-                    <textarea name="vision" class="form-control" id="vision" cols="30" rows="7">{{ old('vision', $appSetting->mission ?? null) }}</textarea>
+                    <label for="vision">Vision</label>
+                    <textarea name="vision" class="form-control" id="vision" cols="30" rows="7">{{ old('vision', $appSetting->vision ?? null) }}</textarea>
                 </div>
 
                 <div class="col-md-12">

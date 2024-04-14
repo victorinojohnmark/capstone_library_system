@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Announcement;
 use App\Models\Book;
+use App\Models\AppSetting;
+use App\Models\Gallery;
 
 class HomeController extends Controller
 {
@@ -29,7 +31,9 @@ class HomeController extends Controller
     {
         return view('welcome', [
             'announcements' => Announcement::latest()->get(),
-            'books' => Book::latest()->get()
+            'books' => Book::latest()->get(),
+            'appSetting' => AppSetting::first(),
+            'galleries' => Gallery::all()
         ]);
     }
 }

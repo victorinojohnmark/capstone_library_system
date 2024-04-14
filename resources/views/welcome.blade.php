@@ -30,7 +30,7 @@
                         <h6 class="mb-0 font-weight-bold text-danger">Penalty Notice</h6>
                     </div>
                     <div class="card-body p-3">
-                        <small><strong>Overdue books are subject to a Php 50.00 penalty.</strong></small>    
+                        <small><strong>Overdue books are subject to 2 pesos per day.</strong></small>    
                     </div>   
                     
                 </div>
@@ -39,40 +39,59 @@
             <div class="col-md-8">
                 <div id="books">
                     @include('layouts.message')
-                    <div class="card">
-                        <div class="card-header">
-                            <h6 class="mb-0 text-info"><strong>Book List</strong></h6>
-                            <div class="float-right d-inline-flex">
-                                
-                            </div>
-                        </div>
+                    
+                    <div id="libraryGallery" class="carousel slide mb-3" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            
+                            
+                            @forelse ($galleries as $gallery)
+                                <li data-target="#libraryGallery" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+                            @empty   
+                            @endforelse
+                        </ol>
 
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="books-table" class="table table-bordered table-hover table-stripe">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Author</th>
-                                            {{-- <th scope="col">ISBN</th> --}}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($books as $book)
-                                            <tr>
-                                                <td><strong>{{ $loop->index + 1 }}</strong></td>
-                                                <td>{{ $book->title }}</td>
-                                                <td>{{ $book->author }}</td>
-                                                {{-- <td>{{ $book->isbn }}</td> --}}
-                                            </tr>
-                                        @empty
-                                        @endforelse
-                                    </tbody>
-                                </table>
+                        <div class="carousel-inner">
+
+                          @forelse($galleries as $gallery)
+                            <div class="carousel-item {{ $loop->first? 'active' : '' }}">
+                                <img src="{{ '/storage/gallery/'. $gallery->file }}" class="d-block w-100" style="object-fit: cover; aspect-ratio: 4/2" alt="...">
                             </div>
+                          @empty
+                            <div class="carousel-item active">
+                                <img src="https://placehold.co/600x400?text=Welcome" style="object-fit: cover; aspect-ratio: 4/2" class="d-block w-100" alt="...">
+                            </div>
+                          @endforelse
+
+                        
+                          
+                        </div>
+                       <button class="carousel-control-prev" type="button" data-target="#libraryGallery" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-target="#libraryGallery" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </button>
+                    </div>
+
+                    <div class="card text-white bg-info mb-3 d-block w-100 rounded-lg">
+                        
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center">
+                                <span class="bg-warning p-2 px-4 rounded-pill font-weight-bolder" style="color: #A47525; z-index: 10;">MISSION</span>
+                                <p class="bg-white text-dark p-3 rounded-lg font-weight-bolder" style="margin-top: -13px;">{!! $appSetting->mission !!}</p>
+                            </div>
+
+                            <div class="d-flex flex-column align-items-center">
+                                <span class="bg-warning p-2 px-4 rounded-pill font-weight-bolder" style="color: #A47525; z-index: 10;">VISION</span>
+                                <p class="bg-white text-dark p-3 rounded-lg font-weight-bolder" style="margin-top: -13px;">{!! $appSetting->vision !!}</p>
+                            </div>
+
+                            
                         </div>
                     </div>
+
                 </div>
             </div>
 

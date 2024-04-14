@@ -18,7 +18,6 @@ class UserSeeder extends Seeder
         $adminUser = [
             'lastname' => 'Admin',
             'firstname' => 'Librarian',
-            'middle_initial' => 'P.',
             'email' => env('ADMIN_EMAIL', 'admin@admin.com'),
             'password' => 'password',
             'is_admin' => true,

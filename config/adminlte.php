@@ -371,6 +371,11 @@ return [
             'url'     => '/admin/book-history'
         ],
         [
+            'text'    => 'Settings',
+            'icon'    => 'fas fa-fw fa-cog',
+            'url'     => '/admin/settings'
+        ],
+        [
             'text'    => 'DB Backup',
             'icon'    => 'fas fa-fw fa-database',
             'url'     => '/admin/db-backup'

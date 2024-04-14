@@ -14,6 +14,7 @@ use App\Http\Controllers\BookTransactionController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\BookHistoryController;
 use App\Http\Controllers\BackupController;
+use App\Http\Controllers\AppSettingController;
 
 use App\Http\Controllers\Borrower\BorrowerFrontendController;
 
@@ -79,6 +80,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/db-backup', [BackupController::class, 'index'])->name('backup.index');
         Route::get('/backup', [BackupController::class, 'createBackup'])->name('backup.create');
+        Route::get('/settings', [AppSettingController::class, 'index'])->name('setting.index');
+        Route::post('/settings', [AppSettingController::class, 'update'])->name('setting.update');
+        Route::post('/settings/upload-image', [AppSettingController::class, 'addGalleryImage'])->name('setting.addGalleryImage');
+        Route::post('/settings/delete-image/{gallery}', [AppSettingController::class, 'deleteGalleryImage'])->name('setting.deleteGalleryImage');
         
     });
 

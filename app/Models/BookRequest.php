@@ -30,7 +30,7 @@ class BookRequest extends Model
         return $query->whereNotNull('rejected_at');
     }
 
-    public function scopeApproved()
+    public function scopeApproved($query)
     {
         return $query->whereNotNull('approved_at');
     }

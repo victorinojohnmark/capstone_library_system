@@ -19,15 +19,15 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($bookWithReservations as $bookWithReservation)
+                @forelse ($bookRequests as $bookRequest)
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
-                        <td>{{ $bookWithReservation->title }}</td>
-                        <td>{{ $bookWithReservation->author }}</td>
-                        {{-- <td>{{ $bookWithReservation->isbn }}</td> --}}
-                        <td>{{ $bookWithReservation->bookRequest->approved_at }}</td>
+                        <td>{{ $bookRequest->book->title }}</td>
+                        <td>{{ $bookRequest->book->author }}</td>
+                        {{-- <td>{{ $bookRequest->isbn }}</td> --}}
+                        <td>{{ $bookRequest->approved_at }}</td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#lendBook{{ $bookWithReservation->id ?? null }}">
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#lendBook{{ $bookRequest->id ?? null }}">
                                 <i class="far fa-thumbs-up"></i> Lend Book
                             </button>
                             @include('transaction.book-transaction.modals.book-lending-modal')

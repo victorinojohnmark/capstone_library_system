@@ -12,6 +12,11 @@
         @include('layouts.message')
         <div class="card">
             <div class="card-header">
+                <div class="float-left d-inline-flex">
+                    <a href="{{ route('borrower-index', ['type' => 'Faculty']) }}" class="btn btn-secondary">Faculty</a> &nbsp;
+                    <a href="{{ route('borrower-index', ['type' => 'Student']) }}" class="btn btn-secondary">Student</a> &nbsp;
+                    <a href="{{ route('borrower-index') }}" class="btn btn-secondary">All</a>
+                </div>
                 <div class="float-right d-inline-flex">
                     <a href="{{ route('borrower-create') }}" class="btn btn-primary"><i class="fas fa-fw fa-user-plus"></i> Add Borrower</a>
                 </div>

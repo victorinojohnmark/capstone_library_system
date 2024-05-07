@@ -60,6 +60,7 @@
                             <div class="col-md-8 col-6">
                                 {!! $user->name !!}
                             </div>
+                            
                         </div>
                         <hr />
 
@@ -72,8 +73,9 @@
                                 {!! $user->grade !!}
                             </div>
                         </div>
-                        @endif
                         <hr />
+                        @endif
+                        
 
                         @if ($user->section_id)
                         <div class="row">
@@ -84,8 +86,9 @@
                                 {!! $user->section->section_name !!}
                             </div>
                         </div>
-                        @endif
                         <hr />
+                        @endif
+                        
 
                         @if ($user->adviser_id)
                         <div class="row">
@@ -96,8 +99,8 @@
                                 {!! $user->adviser->name !!}
                             </div>
                         </div>
-                        @endif
                         <hr />
+                        @endif
 
 
                         <div class="row">
@@ -109,6 +112,7 @@
                             </div>
                         </div>
                         <hr />
+                        
                         <div class="row">
                             <div class="col-sm-3 col-md-2 col-5">
                                 <label style="font-weight:bold;">Registration Date</label>

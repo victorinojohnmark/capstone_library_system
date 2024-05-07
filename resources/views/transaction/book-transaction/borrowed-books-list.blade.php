@@ -20,21 +20,21 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($borrowedBooks as $borrowedBook)
+                @forelse ($borrowedTransactions as $borrowedTransaction)
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
-                        <td>{{ $borrowedBook->title }}</td>
-                        <td>{{ $borrowedBook->latestBorrowedTransaction->user->name }}</td>
-                        {{-- <td>{{ $borrowedBook->isbn }}</td> --}}
-                        <td>{{ $borrowedBook->latestBorrowedTransaction->borrowed_at }}</td>
-                        <td>{{ $borrowedBook->latestBorrowedTransaction->due_date }} 
-                            @if ($borrowedBook->latestBorrowedTransaction->is_overdue)
+                        <td>{{ $borrowedTransaction->book->title }}</td>
+                        <td>{{ $borrowedTransaction->user->name }}</td>
+                        {{-- <td>{{ $borrowedTransactions->book->isbn }}</td> --}}
+                        <td>{{ $borrowedTransaction->borrowed_at }}</td>
+                        <td>{{ $borrowedTransaction->due_date }} 
+                            @if ($borrowedTransaction->is_overdue)
                             <span class="badge badge-danger inline">Overdue</span>
-                            <span class="badge badge-danger inline">50 pesos fine</span>
+                            <span class="badge badge-danger inline">{{ number_format($borrowedTransaction->penalty, 2) }} pesos fine</span>
                             @endif
                         </td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#returnBook{{ $borrowedBook->id ?? null }}">
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#returnBook{{ $borrowedTransaction->book->id ?? null }}">
                                 <i class="far fa-thumbs-up"></i> Return Book
                             </button>
                             @include('transaction.book-transaction.modals.book-return-modal')

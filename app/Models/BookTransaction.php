@@ -54,4 +54,19 @@ class BookTransaction extends Model
 
         return max(0, $now->diffInDays($dueDate));
     }
+
+    public function getPenaltyAttribute()
+    {
+        if ($this->is_overdue && is_null($this->returned_at)) {
+            // Calculate the number of days overdue
+            $overdueDays = $this->overdue_days;
+
+            // Calculate the penalty
+            $penalty = $overdueDays * 50; // Penalty rate: 50 per day
+
+            return $penalty;
+        }
+
+        return 0; // No penalty if not overdue or already returned
+    }
 }

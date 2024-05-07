@@ -30,12 +30,12 @@
         <div class="row col-md-8">
             <div class="form-group col-md-6">
                 <label for="lastName">Last Name</label>
-                <input type="text" name="lastname" class="form-control" id="lastName" value="{{ old('lastname') }}" required>
+                <input type="text" name="lastname" onkeypress="acceptOnlyLetters(event)" class="form-control" id="lastName" value="{{ old('lastname') }}" required>
             </div>
         
             <div class="form-group col-md-6">
                 <label for="firstName">First Name</label>
-                <input type="text" name="firstname" class="form-control" id="firstName" value="{{ old('firstname') }}" required>
+                <input type="text" name="firstname" onkeypress="acceptOnlyLetters(event)" class="form-control" id="firstName" value="{{ old('firstname') }}" required>
             </div>
 
             <div class="form-group col-md-4 ">
@@ -120,12 +120,14 @@
     
                             <div class="form-group col-md-6">
                                 <label for="password">Password</label>
-                                <input type="password" name="password" class="form-control" id="password" value="{{ old('password') }}" required>
+                                <input type="password" name="password" oninput="validatePassword(event)" class="form-control" id="password" value="{{ old('password') }}" required>
+                                <span class="error text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="passwordConfirmation">Confirm Password</label>
-                                <input type="password" name="password_confirmation" class="form-control" id="passwordConfirmation" value="{{ old('password_confirmation') }}" required>
+                                <input type="password" name="password_confirmation" oninput="validateConfirmPassword(event)" class="form-control" id="passwordConfirmation" value="{{ old('password_confirmation') }}" required>
+                                <span class="error text-danger"></span>
                             </div>
                             
                         </div>
@@ -134,7 +136,7 @@
             </div>
     
             <div class="col-md-12 mt-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
             </div>
         </div>
     

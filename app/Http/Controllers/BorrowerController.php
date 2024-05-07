@@ -16,7 +16,12 @@ class BorrowerController extends Controller
     
     public function index(Request $request)
     {
-        $borrowers = User::borrowers()->orderBy('lastname')->get();
+        // filter by user type Faculty or Student
+        if($request->has('type')) {
+            $borrowers = User::borrowers()->where('type', $request->type)->orderBy('lastname')->get();
+        } else {
+            $borrowers = User::borrowers()->orderBy('lastname')->get();
+        }
 
         return view('master.borrowers.borrowerlist', [
             'borrower' => new User(),

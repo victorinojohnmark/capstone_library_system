@@ -12,3 +12,37 @@ function handleImageChange(input, imageId) {
         reader.readAsDataURL(file); // Read the file as a data URL
     }
 }
+
+function acceptOnlyLetters(event) {
+    var inputValue = event.key;
+    var regex = /^[a-zA-Z]+$/;
+    if (!regex.test(inputValue)) {
+        event.preventDefault();
+    }
+}
+
+function validatePassword(event) {
+    var passwordInput = event.target;
+    var password = passwordInput.value;
+    var errorElement = passwordInput.nextElementSibling;
+
+    if (password.length < 4) {
+        errorElement.textContent = "Must be at least 4 characters long.";
+    } else {
+        errorElement.textContent = "";
+    }
+}
+
+function validateConfirmPassword(event) {
+    var confirmPasswordInput = event.target;
+    var confirmPassword = confirmPasswordInput.value;
+    var passwordInput = document.getElementsByName('password')[0]; // Assuming your password input has name="password"
+    var password = passwordInput.value;
+    var errorElement = confirmPasswordInput.nextElementSibling;
+
+    if (confirmPassword !== password) {
+        errorElement.textContent = "Passwords do not match.";
+    } else {
+        errorElement.textContent = "";
+    }
+}

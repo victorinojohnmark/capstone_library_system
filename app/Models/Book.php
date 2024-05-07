@@ -15,6 +15,8 @@ class Book extends Model
 
     protected $fillable = ['title', 'author', 'isbn', 'category', 'subject', 'year', 'quantity', 'condition' ,'remarks'];
 
+    protected $appends = ['current_stock'];
+
     public static function boot()
     {
         parent::boot();
@@ -43,10 +45,16 @@ class Book extends Model
 
     public function getStatusAttribute()
     {
-        if($this->has_reservation) {
-            return 'Reserve';
-        } else {
+        // if($this->has_reservation) {
+        //     return 'Reserve';
+        // } else {
+        //     return 'Available';
+        // }
+
+        if ($this->current_stock > 0) {
             return 'Available';
+        } else {
+            return 'Not Available';
         }
 
     }
@@ -120,6 +128,22 @@ class Book extends Model
             ->whereNotNull('borrowed_at')
             ->whereNull('returned_at')
             ->latest('borrowed_at');
+    }
+
+    public function getCurrentStockAttribute()
+    {
+        // Get total quantity
+        $totalQuantity = $this->quantity;
+
+        // Get count of book transactions where the book is borrowed but not returned
+        $borrowedCount = $this->bookTransactions()
+            ->whereNull('returned_at')
+            ->count();
+
+        // Calculate current stock
+        $currentStock = max(0, $totalQuantity - $borrowedCount);
+
+        return $currentStock;
     }
 
     

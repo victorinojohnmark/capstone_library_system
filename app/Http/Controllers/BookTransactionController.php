@@ -7,6 +7,7 @@ use Carbon\Carbon;
 
 use App\Models\Book;
 use App\Models\User;
+use App\Models\BookRequest;
 use App\Models\BookTransaction;
 
 class BookTransactionController extends Controller
@@ -14,10 +15,18 @@ class BookTransactionController extends Controller
 
     public function index()
     {
+
+        $books = Book::all();
+        $availableBooks = $books->filter(function ($book) {
+            return $book->current_stock > 0;
+        });
+
         return view('transaction.book-transaction.book-transaction-list', [
-            'bookWithReservations' => Book::withApprovedRequests()->orderBy('title')->get(),
-            'availableBooks' => Book::AvailableForLending()->orderBy('title')->get(),
-            'borrowedBooks' => Book::borrowedBooks()->orderBy('title')->get(),
+            'bookRequests' => BookRequest::approved()->orderBy('requested_at')->get(),
+            // 'availableBooks' => Book::AvailableForLending()->orderBy('title')->get(),
+            'availableBooks' => $availableBooks->sortBy('title'),
+            // 'borrowedBooks' => Book::borrowedBooks()->orderBy('title')->get(),
+            'borrowedTransactions' => BookTransaction::where('returned_at', '=', null)->orderBy('borrowed_at')->get(),
             'users' => User::borrowers()->orderBy('lastname')->get()
         ]);
     }
@@ -36,12 +45,16 @@ class BookTransactionController extends Controller
         $user = User::findOrFail($data['user_id']);
 
         //check if reserved
-        if($book->isReserved) {
+        // if($book->isReserved) {
             
-            // the reservation is not the same with the requested user, return error
-            if($book->latestApprovedBookRequest->requested_by_id != $data['user_id']) {
-                return redirect()->back()->with('error', 'Invalid Transaction. The book is already reserved for ' . $user->name . '.');
-            }
+        //     // the reservation is not the same with the requested user, return error
+        //     if($book->latestApprovedBookRequest->requested_by_id != $data['user_id']) {
+        //         return redirect()->back()->with('error', 'Invalid Transaction. The book is already reserved for ' . $user->name . '.');
+        //     }
+        // }
+
+        if ($book->current_stock <= 0) {
+            return redirect()->back()->with('error', 'There are no available copies of this book at the moment.');
         }
 
         // dd($data);

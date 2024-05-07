@@ -87,29 +87,26 @@
             </select>
         </div>
 
-        <hr>
-
         <div class="col-md-12">
-            <div class="card bg-light rounded shadow-xs">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" class="form-control" id="email" value="{{ old('email', $borrower->email ?? null) }}" {{ $borrower->id? 'readonly disabled' : null }}>
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" class="form-control" id="password" value="{{ old('password') }}">
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label for="passwordConfirmation">Confirm Password</label>
-                            <input type="password" name="password_confirmation" class="form-control" id="passwordConfirmation" value="{{ old('password_confirmation') }}">
-                        </div>
-                        
-                    </div>
+            <hr>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" class="form-control" id="email" value="{{ old('email', $borrower->email ?? null) }}" {{ $borrower->id? 'readonly disabled' : null }}>
                 </div>
+
+                <div class="form-group col-md-6">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" oninput="validatePassword(event)" class="form-control" id="password" value="{{ old('password') }}">
+                    <span class="error text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="passwordConfirmation">Confirm Password</label>
+                    <input type="password" name="password_confirmation" oninput="validateConfirmPassword(event)" class="form-control" id="passwordConfirmation" value="{{ old('password_confirmation') }}">
+                    <span class="error text-danger"></span>
+                </div>
+                
             </div>
         </div>
 

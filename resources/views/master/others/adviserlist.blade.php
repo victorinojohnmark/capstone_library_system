@@ -28,7 +28,7 @@
                                     @csrf
                                     <div class="form-group col-md-12">
                                         <label for="adviserName{{ $adviser->id ?? null }}">Adviser</label>
-                                        <input type="text" name="name" class="form-control" id="adviserName{{ $adviser->id ?? null }}" value="{{ old('name', $adviser->name ?? null) }}" required>
+                                        <input type="text" name="name" class="form-control" onkeypress="acceptOnlyLetters(event)" id="adviserName{{ $adviser->id ?? null }}" value="{{ old('name', $adviser->name ?? null) }}" required>
                                     </div>
 
                                     <div class="form-group col-md-4">

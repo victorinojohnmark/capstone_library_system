@@ -39,9 +39,9 @@
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $transaction->book->title }}
-                                            @if ($transaction->book->latestBorrowedTransaction->is_overdue)
+                                            @if ($transaction->is_overdue)
                                             <span class="badge badge-danger inline">Overdue</span>
-                                            <span class="badge badge-danger inline">50 pesos fine</span>
+                                            <span class="badge badge-danger inline">{{ number_format($transaction->penalty, 2) }} pesos fine</span>
                                             @endif
                                         </td>
                                         <td>{{ $transaction->book->author }}</td>

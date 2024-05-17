@@ -22,7 +22,7 @@
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $availableBook->title }}</td>
-                        <td>{{ $availableBook->author }} {{ 'stock: ' . $availableBook->current_stock }}</td>
+                        <td>{{ $availableBook->author }} </td>
                         {{-- <td>{{ $availableBook->isbn }}</td> --}}
                         <td>
                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#lendBook{{ $availableBook->id ?? null }}">

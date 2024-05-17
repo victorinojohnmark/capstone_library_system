@@ -30,6 +30,7 @@
                             <th scope="col">Subject</th>
                             <th scope="col">Year</th>
                             <th scope="col">Quantity</th>
+                            <th scope="col">Current Stock</th>
                             <th scope="col">Condition</th>
                             <th scope="col">Status</th>
                             <th scope="col">Options</th>
@@ -50,6 +51,7 @@
                                 <td>{{ $book->subject ?? '-' }}</td>
                                 <td>{{ $book->year }}</td>
                                 <td>{{ $book->quantity }}</td>
+                                <td>{{ $book->current_stock }}</td>
                                 <td>{{ $book->condition }}</td>
                                 <td>
                                     {{ $book->status }}

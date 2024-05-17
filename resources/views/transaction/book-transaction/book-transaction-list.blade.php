@@ -50,11 +50,15 @@
 </div>
 @stop
 
+{{-- @section('plugins.select2', true) --}}
+
 @section('css')
     
     {{-- <link rel="stylesheet" href="/css/custom.css"> --}}
     @vite(['public/css/custom.css'])
+    
     <link rel="stylesheet" href="/vendor/datatables/datatables.min.css">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css"> --}}
 @stop
 
 @push('css')
@@ -63,6 +67,7 @@
 
 @section('js')
     <script src="{{ asset('vendor/datatables/datatables.min.js') }}"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> --}}
     <script src="{{ asset('js/custom.js') }}"></script>
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <script>
@@ -76,6 +81,39 @@
                 "searching": false
             });
 
+            // $('select.user-select').each(function() {
+            //     var selectElement = $(this);
+            //     console.log(selectElement)
+            //     selectElement.select2({
+            //         placeholder: 'Select here...',
+            //         ajax: {
+            //             url: '/users/search',
+            //             dataType: 'json',
+            //             delay: 250,
+            //             data: function (params) {
+            //                 return {
+            //                     name: params.term // search term
+            //                 };
+            //             },
+            //             processResults: function (data) {
+            //                 return {
+            //                     results: data.map(function (user) {
+            //                         return {
+            //                             id: user.id,
+            //                             text: user.name
+            //                         };
+            //                     })
+            //                 };
+            //             },
+            //             cache: true
+            //         },
+            //         minimumInputLength: 1
+            //     });
+            // });
+            
+
         });
+
+        
     </script>
 @stop

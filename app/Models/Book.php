@@ -78,9 +78,15 @@ class Book extends Model
 
     public function scopeAvailableForLending($query)
     {
-        return $query->withoutApprovalRequests()->whereDoesntHave('bookTransactions', function ($query) {
-            $query->whereNull('returned_at');
-        });
+        // return $query->withoutApprovalRequests()->whereDoesntHave('bookTransactions', function ($query) {
+        //     $query->whereNull('returned_at');
+        // });
+
+        // return $query->whereHas('bookTransactions', function ($query) {
+        //     $query->whereNull('returned_at');
+        // }, '<', $this->quantity);
+
+        return $query->whereRaw('quantity - (SELECT COUNT(*) FROM book_transactions WHERE book_transactions.book_id = books.id AND book_transactions.returned_at IS NULL) > 0');
     }
 
     public function scopeBorrowedBooks($query)

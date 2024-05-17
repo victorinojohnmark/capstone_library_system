@@ -26,6 +26,12 @@
                         @endforelse
                     </select>
                 </div>
+                {{-- <div class=" col-md-12">
+                    <label for="user_id_{{ $availableBook->id }}">Borrower</label>
+                    <select name="user_id" class="user-select" id="user_id_{{ $availableBook->id }}">
+                        <option selected disabled>Select here...</option>
+                    </select>
+                </div> --}}
 
                 <div class="form-group col-md-6">
                     <label for="due_date{{ $availableBook->id ?? null }}">Due Date</label>

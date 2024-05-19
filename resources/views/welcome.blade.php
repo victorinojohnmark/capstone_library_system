@@ -30,7 +30,7 @@
                         <h6 class="mb-0 font-weight-bold text-danger">Penalty Notice</h6>
                     </div>
                     <div class="card-body p-3">
-                        <small><strong>Overdue books are subject to 2 pesos per day.</strong></small>    
+                        <small><strong>Overdue books are subject to 50 pesos per day.</strong></small>    
                     </div>   
                     
                 </div>

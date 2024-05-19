@@ -8,7 +8,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="form-row" action="{{ route('admin.book-transactions.return-book', ['book' => $borrowedTransaction->book->id]) }}" method="POST" enctype="multipart/form-data">
+            <form class="form-row" action="{{ route('admin.book-transactions.return-book', ['bookTransaction' => $borrowedTransaction->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="book_id" value="{{ $borrowedTransaction->book->id }}">
                 <input type="hidden" name="user_id" value="{{ $borrowedTransaction->user->id }}">

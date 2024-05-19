@@ -43,21 +43,20 @@ class BookTransactionController extends Controller
 
         //get user whos borrowing the book
         $user = User::findOrFail($data['user_id']);
+        $book = Book::findOrFail($data['book_id']);
 
-        //check if reserved
-        // if($book->isReserved) {
-            
-        //     // the reservation is not the same with the requested user, return error
-        //     if($book->latestApprovedBookRequest->requested_by_id != $data['user_id']) {
-        //         return redirect()->back()->with('error', 'Invalid Transaction. The book is already reserved for ' . $user->name . '.');
-        //     }
-        // }
-
+        //check current stock
         if ($book->current_stock <= 0) {
             return redirect()->back()->with('error', 'There are no available copies of this book at the moment.');
         }
 
-        // dd($data);
+        //check duplicate borrow
+        $ifAlreadyBorrowed = BookTransaction::where([['returned_at', '=', null], ['book_id', '=', $data['book_id']], ['user_id', '=', $data['user_id']]])->count();
+        // dd($ifAlreadyBorrowed);
+        if ($ifAlreadyBorrowed) {
+            return redirect()->back()->with('error', $user->name . ' already borrowed ' . $book->title . '.');
+        }
+
         //create bookTransaction - lend book
         $data['borrowed_at'] = Carbon::now()->format('Y-m-d H:i:s');
         $bookTransaction = BookTransaction::create($data);
@@ -69,7 +68,7 @@ class BookTransactionController extends Controller
 
     }
 
-    public function returnBook(Request $request, Book $book)
+    public function returnBook(Request $request, BookTransaction $bookTransaction)
     {
         $data = $request->validate([
             'book_id' => 'required|exists:books,id',
@@ -80,12 +79,12 @@ class BookTransactionController extends Controller
         $user = User::findOrFail($data['user_id']);
 
         // Check if the book is currently borrowed by the user
-        if (!$book->isBorrowed || $book->latestBorrowedTransaction->user_id != $data['user_id']) {
-            return redirect()->back()->with('error', 'Invalid Transaction. The book is not currently borrowed by ' . $user->name . '.');
-        }
+        // if (!$book->isBorrowed || $book->latestBorrowedTransaction->user_id != $data['user_id']) {
+        //     return redirect()->back()->with('error', 'Invalid Transaction. The book is not currently borrowed by ' . $user->name . '.');
+        // }
 
         // Update bookTransaction - mark book as returned
-        $book->latestBorrowedTransaction->update(['returned_at' => now()]);
+        $bookTransaction->update(['returned_at' => now()]);
 
         return redirect()->back()->with('success', 'The book was successfully returned by ' . $user->name . '.');
     }

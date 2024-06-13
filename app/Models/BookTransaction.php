@@ -62,7 +62,7 @@ class BookTransaction extends Model
             $overdueDays = $this->overdue_days;
 
             // Calculate the penalty
-            $penalty = $overdueDays * 50; // Penalty rate: 50 per day
+            $penalty = $overdueDays * 2; // Penalty rate: 2 pesos per day
 
             return $penalty;
         }

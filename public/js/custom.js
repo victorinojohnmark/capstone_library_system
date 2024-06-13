@@ -26,8 +26,8 @@ function validatePassword(event) {
     var password = passwordInput.value;
     var errorElement = passwordInput.nextElementSibling;
 
-    if (password.length < 4) {
-        errorElement.textContent = "Must be at least 4 characters long.";
+    if (password.length < 8) {
+        errorElement.textContent = "Must be at least 8 characters long.";
     } else {
         errorElement.textContent = "";
     }

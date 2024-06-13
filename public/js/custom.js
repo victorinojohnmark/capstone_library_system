@@ -15,7 +15,7 @@ function handleImageChange(input, imageId) {
 
 function acceptOnlyLetters(event) {
     var inputValue = event.key;
-    var regex = /^[a-zA-Z]+$/;
+    var regex = /^[a-zA-Z\s]+$/;  // \s matches any whitespace character, including spaces
     if (!regex.test(inputValue)) {
         event.preventDefault();
     }

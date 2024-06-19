@@ -76,7 +76,7 @@ class BorrowerFrontendController extends Controller
     public function notifications(Request $request)
     {
         return view('borrower.notifications.notifications-list', [
-            'notifications' => auth()->user()->notifications()->latest()->get(),
+            'notifications' => auth()->user()->unreadNotifications()->latest()->get(),
         ]);
     }
 

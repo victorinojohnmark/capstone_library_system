@@ -23,7 +23,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Message</th>
-
+                            <th scope="col">Option</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +33,7 @@
                                 <td>
                                     {!! $notification->data['message'] !!}
                                 </td>
+                                <td><a href="{{ route('notification.markAsRead', ['id' => $notification->id]) }}" class="btn btn-primary btn-sm">Mark as Read</a></td>
                                 {{-- <td>{{ $transaction->status }}</td> --}}
                             </tr>
                         @empty

@@ -31,6 +31,10 @@ Route::get('/email/verify', function () {
 Auth::routes(['verify' => true]);
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/notifications/get', [NotificationController::class, 'get'])->name('notification.get');
+    Route::get('/notifications/{id}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notification.markAsRead');
+
+
     Route::get('/users/search', [UserController::class, 'search']);
 
     Route::prefix('admin')->group(function () {

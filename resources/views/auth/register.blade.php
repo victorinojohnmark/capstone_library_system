@@ -55,7 +55,7 @@
             </div>
         
             <div class="form-group col-md-4 studentField">
-                <label for="grade_no">Grade No</label>
+                <label for="grade_no">Grade Level</label>
                 <select name="grade_no" class="custom-select" id="grade_no">
                     <option selected disabled>Select here...</option>
                     @forelse ($grades as $grade)

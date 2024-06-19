@@ -48,3 +48,12 @@
 .navbar .form-control {
     padding: .75rem 1rem;
 }
+
+.dataTables_info, .dataTables_paginate, .dt-buttons, .dataTables_length, .dataTables_filter {
+    display: inline-flex !important;
+    margin-right: 10px;
+    }
+
+.dataTables_filter {
+    float: right !important;
+}

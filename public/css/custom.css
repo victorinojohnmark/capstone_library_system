@@ -67,3 +67,12 @@ label {
 /* .user-image {
     box-shadow: none !important;
 } */
+
+.dataTables_info, .dataTables_paginate, .dt-buttons, .dataTables_length, .dataTables_filter {
+    display: inline-flex !important;
+    margin-right: 10px;
+    }
+
+.dataTables_filter {
+    float: right !important;
+}

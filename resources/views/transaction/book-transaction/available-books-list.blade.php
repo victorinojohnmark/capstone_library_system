@@ -6,36 +6,38 @@
     </div>
 
     <div class="card-body">
-        <table class="datatable table table-bordered table-hover table-stripe">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Book</th>
-                    <th scope="col">Author</th>
-                    {{-- <th scope="col">ISBN</th> --}}
-                    <th scope="col">Option</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($availableBooks as $availableBook)
+        <div class="table-responsive">
+            <table id="availableBookTable" class="datatable table table-bordered table-hover table-stripe">
+                <thead>
                     <tr>
-                        <td>{{ $loop->index + 1 }}</td>
-                        <td>{{ $availableBook->title }}</td>
-                        <td>{{ $availableBook->author }} </td>
-                        {{-- <td>{{ $availableBook->isbn }}</td> --}}
-                        <td>
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#lendBook{{ $availableBook->id ?? null }}">
-                                <i class="far fa-thumbs-up"></i> Lend Book
-                            </button>
-                            @include('transaction.book-transaction.modals.available-book-lending-modal')
-                            
-                        </td>
+                        <th scope="col">#</th>
+                        <th scope="col">Book</th>
+                        <th scope="col">Author</th>
+                        {{-- <th scope="col">ISBN</th> --}}
+                        <th scope="col">Option</th>
+    
                     </tr>
-                @empty
-                    
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @forelse ($availableBooks as $availableBook)
+                        <tr>
+                            <td>{{ $loop->index + 1 }}</td>
+                            <td>{{ $availableBook->title }}</td>
+                            <td>{{ $availableBook->author }} </td>
+                            {{-- <td>{{ $availableBook->isbn }}</td> --}}
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#lendBook{{ $availableBook->id ?? null }}">
+                                    <i class="far fa-thumbs-up"></i> Lend Book
+                                </button>
+                                @include('transaction.book-transaction.modals.available-book-lending-modal')
+                                
+                            </td>
+                        </tr>
+                    @empty
+                        
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

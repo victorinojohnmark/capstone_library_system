@@ -72,45 +72,106 @@
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <script>
         $(document).ready(function () {
-            $('.datatable').DataTable({
+            $('#bookWithReservationTable').DataTable({
                 "order": [],
+                columns: [
+                    { data: 'number', visible: true }, 
+                    { data: 'name', visible: true }, 
+                    { data: 'book', visible: true }, 
+                    { data: 'author', visible: true }, 
+                    { data: 'date', visible: true }, 
+                    { data: 'options', visible: true }, 
+                ],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4] // Include the invisible column
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4] // Include the invisible column
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4] // Include the invisible column
+                        }
+                    },
+                    
+                ]
             });
 
-            $('#borrowedBookDatatable').DataTable({
+            $('#availableBookTable').DataTable({
                 "order": [],
-                "searching": false
+                columns: [
+                    { data: 'number', visible: true }, 
+                    { data: 'book', visible: true }, 
+                    { data: 'author', visible: true }, 
+                    { data: 'options', visible: true }, 
+                ],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: [0, 1, 2] // Include the invisible column
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [0, 1, 2] // Include the invisible column
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: [0, 1, 2] // Include the invisible column
+                        }
+                    },
+                    
+                ]
             });
 
-            // $('select.user-select').each(function() {
-            //     var selectElement = $(this);
-            //     console.log(selectElement)
-            //     selectElement.select2({
-            //         placeholder: 'Select here...',
-            //         ajax: {
-            //             url: '/users/search',
-            //             dataType: 'json',
-            //             delay: 250,
-            //             data: function (params) {
-            //                 return {
-            //                     name: params.term // search term
-            //                 };
-            //             },
-            //             processResults: function (data) {
-            //                 return {
-            //                     results: data.map(function (user) {
-            //                         return {
-            //                             id: user.id,
-            //                             text: user.name
-            //                         };
-            //                     })
-            //                 };
-            //             },
-            //             cache: true
-            //         },
-            //         minimumInputLength: 1
-            //     });
-            // });
-            
+
+            $('#borrowedBookTable').DataTable({
+                "order": [],
+                columns: [
+                    { data: 'number', visible: true }, 
+                    { data: 'name', visible: true }, 
+                    { data: 'book', visible: true }, 
+                    { data: 'date_borrowed', visible: true }, 
+                    { data: 'due_date', visible: true }, 
+                    { data: 'options', visible: true }, 
+                ],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4] // Include the invisible column
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4] // Include the invisible column
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4] // Include the invisible column
+                        }
+                    },
+                    
+                ]
+            });
 
         });
 

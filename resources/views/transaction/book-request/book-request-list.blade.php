@@ -22,6 +22,7 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col">Name</th>
                             <th scope="col">Book</th>
                             <th scope="col">Author</th>
                             {{-- <th scope="col">ISBN</th> --}}
@@ -35,6 +36,7 @@
                         @forelse ($bookRequests as $bookRequest)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
+                                <td>{{ $bookRequest->user->name }}</td>
                                 <td>
                                     {{-- <a href="#" data-toggle="modal" data-target="#modalBookRequest{{ $bookRequest->id }}"> --}}
                                         {{ $bookRequest->book->title }}

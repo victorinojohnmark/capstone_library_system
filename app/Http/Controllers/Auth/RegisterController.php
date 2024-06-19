@@ -71,6 +71,9 @@ class RegisterController extends Controller
             'employee_no' => ['required_if:type,Faculty'],
             
             'image_filename' => ['sometimes','mimes:jpg,jpeg,png','max:5120'],
+        ], [
+            'lrn.min' => 'LRN must be 12 digits.',
+            'lrn.max' => 'LRN must be 12 digits.',
         ]);
     }
 

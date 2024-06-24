@@ -67,4 +67,35 @@
 @section('js')
     <script src="{{ asset('vendor/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.history-table').DataTable({
+                "order": [],
+                columns: [
+                    { data: 'no', visible: true }, 
+                    { data: 'borrower_name', visible: true }, 
+                    { data: 'date_borrowed', visible: true }, 
+                    { data: 'date_returned', visible: true }, 
+                    { data: 'due_date', visible: true }, 
+                ],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4] // Include the invisible column
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4] // Include the invisible column
+                        }
+                    },
+                    
+                ]
+            });
+
+        });
+    </script>
 @stop

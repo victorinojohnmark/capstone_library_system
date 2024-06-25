@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Adviser;
+use App\Models\Section;
 use Illuminate\Http\Request;
 use App\System\Helper;
 
@@ -14,11 +15,13 @@ class AdviserController extends Controller
         return view('master.others.adviserlist', [
             'advisers' => Adviser::latest()->get(),
             'grades' => Helper::getDropDownJson('grades.json'),
+            'sections' => Section::orderBy('grade_no', 'asc')->get()
         ]);
     }
 
     public function fetchAdviser(Request $request)
     {
+
         return $advisors = Adviser::where(function($query) use($request) {
             if($request->query('grade_no')) {
                 $query->where('grade_no', $request->query('grade_no'));

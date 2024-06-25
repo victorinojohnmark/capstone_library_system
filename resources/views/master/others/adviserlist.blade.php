@@ -138,7 +138,7 @@
                                 
                                 </td>
                                 <td>{{ $adviser->grade_no }}</td>
-                                <td>{{ $adviser->section->section_name }}</td>
+                                <td>{{ $adviser->section->section_name ?? 'N/A' }}</td>
                                 <td>
                                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#adviserModalDelete{{ $adviser->id }}"><i class="fas fa-trash"></i></button>
                                     <div class="modal fade" id="adviserModalDelete{{ $adviser->id ?? null }}" tabindex="-1" aria-hidden="true">

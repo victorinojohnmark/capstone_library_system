@@ -79,7 +79,7 @@
     
             
         
-            <div class="form-group col-md-8 studentField">
+            {{-- <div class="form-group col-md-8 studentField">
                 <label for="adviser">Adviser</label>
                 <select name="adviser_id" class="custom-select" id="adviser">
                     <option selected disabled>Select here...</option>
@@ -88,6 +88,12 @@
                     @empty
                     @endforelse
                 </select>
+            </div> --}}
+
+            <div class="col-md-8 studentField">
+                <label for="adviser">Adviser</label>
+                <input type="text" class="form-control" name="adviser" id="adviser" readonly>
+                <input type="hidden" name="adviser_id" id="adviser_id">
             </div>
 
             <div class="form-group col-md-4 facultyField">
@@ -390,7 +396,7 @@
             toggleFieldsonInitialLoad();
 
             // Function to populate Section and Adviser based on Grade No
-            function populateSectionsAndAdvisers() {
+            function populateSections() {
                 var gradeNoSelect = document.getElementById('grade_no');
                 var sectionSelect = document.getElementById('section');
                 var adviserSelect = document.getElementById('adviser');
@@ -411,21 +417,58 @@
                             });
                         });
 
-                    fetch(`/api/advisers?grade_no=${selectedGradeNo}`)
+                    // fetch(`/api/advisers?grade_no=${selectedGradeNo}`)
+                    //     .then(response => response.json())
+                    //     .then(data => {
+                    //         // Populate advisers based on the API response
+                    //         adviserSelect.innerHTML = '<option selected disabled>Select here...</option>';
+                    //         data.forEach(adviser => {
+                    //             adviserSelect.innerHTML += `<option value="${adviser.id}">${adviser.name}</option>`;
+                    //         });
+                    //     });
+                }
+            }
+
+            function populateAdviser() {
+                var gradeNoSelect = document.getElementById('grade_no');
+                var sectionSelect = document.getElementById('section');
+                var adviserInput = document.getElementById('adviser');
+                var adviserIdInput = document.getElementById('adviser_id');
+
+                var selectedGradeNo = gradeNoSelect.value;
+                var selectedSection = sectionSelect.value;
+
+                if (selectedGradeNo && selectedSection) {
+                    console.log(selectedGradeNo, selectedSection);
+                    fetch(`/api/advisers?grade_no=${selectedGradeNo}&section_id=${selectedSection}`)
                         .then(response => response.json())
                         .then(data => {
-                            // Populate advisers based on the API response
-                            adviserSelect.innerHTML = '<option selected disabled>Select here...</option>';
-                            data.forEach(adviser => {
-                                adviserSelect.innerHTML += `<option value="${adviser.id}">${adviser.name}</option>`;
-                            });
+                            console.log(data);
+                            if (data.id) {
+                                adviserInput.value = data.name;
+                                adviserIdInput.value = data.id;
+                            } else {
+                                adviserInput.value = '';
+                                adviserIdInput.value = '';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching adviser:', error);
+                            adviserInput.value = '';
+                            adviserIdInput.value = '';
                         });
                 }
             }
 
             // Attach event listener to the "Grade No" select input
             var gradeNoSelect = document.getElementById('grade_no');
-            gradeNoSelect.addEventListener('change', populateSectionsAndAdvisers);
+            var sectionSelect = document.getElementById('section');
+            
+            gradeNoSelect.addEventListener('change', function() {
+                populateSections();
+                populateAdviser();
+            });
+            sectionSelect.addEventListener('change', populateAdviser);
         // });
 
         function validateInput(input) {

@@ -22,12 +22,14 @@ class AdviserController extends Controller
     public function fetchAdviser(Request $request)
     {
 
-        return $advisors = Adviser::where(function($query) use($request) {
-            if($request->query('grade_no')) {
-                $query->where('grade_no', $request->query('grade_no'));
+        $advisors = Adviser::where(function($query) use($request) {
+            if($request->query('grade_no') && $request->query('section_id')) {
+                $query->where('grade_no', $request->query('grade_no'))
+                ->where('section_id', $request->query('section_id'));
             }
-        })
-        ->orderBy('name')->get();
+        })->first();
+
+        return response()->json($advisors);
         
     }
 
@@ -35,7 +37,8 @@ class AdviserController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|unique:advisers,name',
-            'grade_no' =>'required'
+            'grade_no' =>'required',
+            'section_id' =>'required|exists:sections,id'
         ]);
 
         $adviser = Adviser::create($data);
@@ -48,7 +51,8 @@ class AdviserController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|unique:advisers,name,'.$adviser->id.',id',
-            'grade_no' =>'required'
+            'grade_no' =>'required',
+            'section_id' =>'required|exists:sections,id'
         ]);
 
         $adviser->fill($data);

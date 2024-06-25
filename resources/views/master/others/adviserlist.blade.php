@@ -73,7 +73,8 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Grade</th>
+                            <th scope="col">Grade Level</th>
+                            <th scope="col">Section</th>
                             <th scope="col">Option</th>
                         </tr>
                     </thead>
@@ -103,7 +104,7 @@
 
                                                     <div class="form-group col-md-4">
                                                         <label for="grade_no{{ $adviser->id }}">Grade No</label>
-                                                        <select name="grade_no{{ $adviser->id }}" class="custom-select" id="grade_no{{ $adviser->id }}">
+                                                        <select name="grade_no" class="custom-select" id="grade_no{{ $adviser->id }}">
                                                             <option selected disabled>Select here...</option>
                                                             @forelse ($grades as $grade)
                                                                 <option value="{{ $grade['grade_no'] }}" {{ $adviser->grade_no == $grade['grade_no'] ? 'selected' : null }}>{{ $grade['grade_name'] }}</option>
@@ -115,10 +116,10 @@
 
                                                     <div class="form-group col-md-4">
                                                         <label for="section_id{{ $adviser->id }}">Section</label>
-                                                        <select name="section_id{{ $adviser->id }}" class="custom-select" id="section_id{{ $adviser->id }}">
+                                                        <select name="section_id" class="custom-select" id="section_id{{ $adviser->id }}">
                                                             <option selected disabled>Select here...</option>
                                                             @forelse ($sections as $section)
-                                                                <option value="{{ $section->id }}" {{ $adviser->section_id }}>{{ $section->section_name }}</option>
+                                                                <option value="{{ $section->id }}" {{ $adviser->section_id == $section->id ? 'selected' : null }}>{{ $section->section_name }}</option>
                                                             @empty
                                                                 
                                                             @endforelse
@@ -137,6 +138,7 @@
                                 
                                 </td>
                                 <td>{{ $adviser->grade_no }}</td>
+                                <td>{{ $adviser->section->section_name }}</td>
                                 <td>
                                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#adviserModalDelete{{ $adviser->id }}"><i class="fas fa-trash"></i></button>
                                     <div class="modal fade" id="adviserModalDelete{{ $adviser->id ?? null }}" tabindex="-1" aria-hidden="true">

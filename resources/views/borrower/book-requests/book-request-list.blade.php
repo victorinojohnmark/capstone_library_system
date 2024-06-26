@@ -41,7 +41,13 @@
                                             <p>{{ $bookRequest->book->title }}</p>
                                             {{-- @include('borrower.book-requests.book-request-modal') --}}
                                         </td>
-                                        <td>{{ $bookRequest->book->author }}</td>
+                                        <td>
+                                            @forelse (json_decode($bookRequest->book->author, true) as $author)
+                                                <span class="badge badge-success">{{ $author }}</span>
+                                            @empty
+                                                
+                                            @endforelse
+                                        </td>
                                         {{-- <td>{{ $bookRequest->book->isbn }}</td> --}}
                                         <td>{{  $bookRequest->requested_at }}</td>
                                         <td>{{ $bookRequest->status }}</td>

@@ -39,7 +39,7 @@ class BookController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|unique:books,title',
-            'author' => 'nullable',
+            'author' => 'required|string',
             // 'isbn' => 'required_if:category,Books|unique:books,isbn',
             'category' =>'required',
             'subject' => 'nullable',
@@ -53,6 +53,9 @@ class BookController extends Controller
             $data['subject'] = null;
         }
 
+        $authors = explode(',', $data['author']);
+        $data['author'] = json_encode($authors);
+
         $book = Book::create($data);
 
         session()->flash('success', $book->title . ' added successfully.');
@@ -65,9 +68,10 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        // dd($request);
         $data = $request->validate([
             'title' => 'required|unique:books,title,'.$book->id.',id',
-            'author' => 'nullable',
+            'author' => 'required|string',
             'category' =>'required',
             // 'isbn' => 'required_if:category,Books|unique:books,isbn,' . $book->id . ',id',
             'subject' => 'nullable',
@@ -80,6 +84,9 @@ class BookController extends Controller
         if($data['category'] != 'Books') {
             $data['subject'] = null;
         }
+
+        $authors = explode(',', $data['author']);
+        $data['author'] = json_encode($authors);
 
         $book->fill($data);
         $book->save();

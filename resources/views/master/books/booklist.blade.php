@@ -46,8 +46,15 @@
                                         <strong><a href="{{ route('book-show', ['book' => $book->id]) }}">{{ $book->title }}</a></strong>
                                         {{-- @include('master.books.bookmodal') --}}
                                     </td>
-                                    <td>{{ $book->author }}</td>
+                                    
                                     {{-- <td>{{ $book->isbn }}</td> --}}
+                                    <td>
+                                        @forelse (json_decode($book->author, true) as $author)
+                                            <span class="badge badge-success">{{ $author }}</span>
+                                        @empty
+                                            
+                                        @endforelse
+                                    </td>
                                     <td>{{ $book->category }}</td>
                                     <td>{{ $book->subject ?? '-' }}</td>
                                     <td>{{ $book->year }}</td>
@@ -98,15 +105,18 @@
     
     {{-- <link rel="stylesheet" href="/css/custom.css"> --}}
     @vite(['public/css/custom.css'])
+    {{-- <link rel="stylesheet" href="{{ asset('vendor/tagsinput/tagsinput.css') }}"> --}}
     <link rel="stylesheet" href="/vendor/datatables/datatables.min.css">
 @stop
-
+ 
 @push('css')
     
 @endpush
 
 @section('js')
+    {{-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> --}}
     <script src="{{ asset('vendor/datatables/datatables.min.js') }}"></script>
+    {{-- <script src="{{ asset('vendor/tagsinput/tagsinput.js') }}"></script> --}}
     <script src="{{ asset('js/custom.js') }}"></script>
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <script>

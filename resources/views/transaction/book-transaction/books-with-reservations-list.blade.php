@@ -26,7 +26,13 @@
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $bookRequest->user->name }}</td>
                             <td>{{ $bookRequest->book->title }}</td>
-                            <td>{{ $bookRequest->book->author }}</td>
+                            <td>
+                                @forelse (json_decode($bookRequest->book->author, true) as $author)
+                                    <span class="badge badge-success">{{ $author }}</span>
+                                @empty
+                                    
+                                @endforelse
+                            </td>
                             {{-- <td>{{ $bookRequest->isbn }}</td> --}}
                             <td>{{ $bookRequest->approved_at }}</td>
                             <td>

@@ -36,7 +36,13 @@
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $book->title }}</td>
-                                        <td>{{ $book->author }}</td>
+                                        <td>
+                                            @forelse (json_decode($book->author, true) as $author)
+                                                <span class="badge badge-success">{{ $author }}</span>
+                                            @empty
+                                                
+                                            @endforelse
+                                        </td>
                                         {{-- <td>{{ $book->isbn }}</td> --}}
                                         <td>
                                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalBookRequest{{ $book->id ?? null }}">Request</a>

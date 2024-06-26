@@ -44,7 +44,13 @@
                                             <span class="badge badge-danger inline">{{ number_format($transaction->penalty, 2) }} pesos fine</span>
                                             @endif
                                         </td>
-                                        <td>{{ $transaction->book->author }}</td>
+                                        <td>
+                                            @forelse (json_decode($transaction->book->author, true) as $author)
+                                                <span class="badge badge-success">{{ $author }}</span>
+                                            @empty
+                                                
+                                            @endforelse
+                                        </td>
                                         {{-- <td>{{ $transaction->book->isbn }}</td> --}}
                                         <td>{{  $transaction->borrowed_at }}</td>
                                         <td>{{  $transaction->due_date }}</td>

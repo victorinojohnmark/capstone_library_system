@@ -29,6 +29,7 @@
     
     {{-- <link rel="stylesheet" href="/css/custom.css"> --}}
     @vite(['public/css/custom.css'])
+    <link rel="stylesheet" href="{{ asset('vendor/tagsinput/tagsinput.css') }}">
 @stop
 
 @push('css')
@@ -36,6 +37,8 @@
 @endpush
 
 @section('js')
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="{{ asset('vendor/tagsinput/tagsinput.js') }}"></script>
 <script>
     // Function to handle category change
     function handleCategoryChange(selectElement) {

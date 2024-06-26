@@ -43,7 +43,13 @@
                                     {{-- </a> --}}
                                     {{-- @include('borrower.book-requests.book-request-modal') --}}
                                 </td>
-                                <td>{{ $bookRequest->book->author }}</td>
+                                <td>
+                                    @forelse (json_decode($bookRequest->book->author, true) as $author)
+                                        <span class="badge badge-success">{{ $author }}</span>
+                                    @empty
+                                        
+                                    @endforelse
+                                </td>
                                 {{-- <td>{{ $bookRequest->book->isbn }}</td> --}}
                                 <td>{{ $bookRequest->requested_at }}</td>
                                 <td>{{ $bookRequest->status }}</td>
@@ -94,6 +100,71 @@
         $(document).ready(function () {
             $('#book-requests-table').DataTable({
                 "order": [],
+                columns: [
+                    { data: 'number', visible: true }, 
+                    { data: 'name', visible: true }, 
+                    { data: 'book', visible: true }, 
+                    { data: 'author', visible: true }, 
+                    { data: 'date_request', visible: true },
+                    { data:'status', visible: true },
+                    { data: 'options', visible: true }, 
+                ],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5] // Include the invisible column
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5] // Include the invisible column
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5] // Include the invisible column
+                        }
+                    },
+                    
+                ]
+            });
+
+            $('#borrowedBookTable').DataTable({
+                "order": [],
+                columns: [
+                    { data: 'number', visible: true }, 
+                    { data: 'name', visible: true }, 
+                    { data: 'book', visible: true }, 
+                    { data: 'date_borrowed', visible: true }, 
+                    { data: 'due_date', visible: true }, 
+                    { data: 'options', visible: true }, 
+                ],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4] // Include the invisible column
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4] // Include the invisible column
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4] // Include the invisible column
+                        }
+                    },
+                    
+                ]
             });
 
         });

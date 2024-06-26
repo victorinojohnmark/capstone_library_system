@@ -1,3 +1,4 @@
+{{-- {{ dd($book) }} --}}
 <form class="form-row" action="/admin/books{{ $book->id ? '/' . $book->id : null }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="col-md-6">
@@ -8,7 +9,7 @@
 
         <div class="form-group col-md-12">
             <label for="author">Author</label>
-            <input type="text" name="author" class="form-control" id="author" value="{{ old('author', $book->author ?? null) }}">
+            <input type="text" name="author" data-role="tagsinput" class="form-control" id="author" value="{{ implode(',', old('author', json_decode($book->author, true) ?? [])) }}" required>
         </div>
 
         {{-- <div class="form-group col-md-12">

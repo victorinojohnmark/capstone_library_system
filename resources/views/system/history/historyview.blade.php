@@ -37,7 +37,13 @@
                                     <strong><a href="#" data-toggle="modal" data-target="#modalBook{{ $book->id }}">{{ $book->title }}</a></strong>
                                     @include('system.history.historymodal')
                                 </td>
-                                <td>{{ $book->author }}</td>
+                                <td>
+                                    @forelse (json_decode($book->author, true) as $author)
+                                        <span class="badge badge-success">{{ $author }}</span>
+                                    @empty
+                                        
+                                    @endforelse
+                                </td>
                                 {{-- <td>{{ $book->isbn }}</td> --}}
                                 <td>
                                     {{ $book->status }}

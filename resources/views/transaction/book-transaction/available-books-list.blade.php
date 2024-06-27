@@ -32,7 +32,7 @@
                             </td>
                             {{-- <td>{{ $availableBook->isbn }}</td> --}}
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#lendBook{{ $availableBook->id ?? null }}">
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#availableLendBook{{ $availableBook->id ?? null }}">
                                     <i class="far fa-thumbs-up"></i> Lend Book
                                 </button>
                                 @include('transaction.book-transaction.modals.available-book-lending-modal')

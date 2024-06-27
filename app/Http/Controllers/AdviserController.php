@@ -15,7 +15,7 @@ class AdviserController extends Controller
         return view('master.others.adviserlist', [
             'advisers' => Adviser::latest()->get(),
             'grades' => Helper::getDropDownJson('grades.json'),
-            'sections' => Section::orderBy('grade_no', 'asc')->get()
+            'sections' => Section::doesntHave('adviser')->orderBy('grade_no', 'asc')->get()
         ]);
     }
 

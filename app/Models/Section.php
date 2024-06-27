@@ -11,4 +11,9 @@ class Section extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['section_name', 'grade_no'];
+
+    public function adviser()
+    {
+        return $this->hasOne(Adviser::class);
+    }
 }

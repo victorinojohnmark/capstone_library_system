@@ -137,7 +137,7 @@
 
                         // Add a table with the header text and logo, with no borders
                         doc.content.unshift({
-                            text: 'ASHI SCHOOL OF HOME INDUSTRIES',
+                            text: 'AMAYA SCHOOL OF HOME INDUSTRIES',
                             style: 'header',
                             alignment: 'center',
                             margin: [0, 10, 0, 10]
